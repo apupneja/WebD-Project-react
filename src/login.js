@@ -1,11 +1,9 @@
 import "./login.css";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
-  Button,
   Form,
   FormButton,
   Grid,
-  Message,
   Segment,
 } from "semantic-ui-react";
 import { useState } from "react";
@@ -30,6 +28,7 @@ const Login = () => {
         },
       })
       .then((res) => {
+        history.push("/admin");
         console.log(res);
       });
   };
