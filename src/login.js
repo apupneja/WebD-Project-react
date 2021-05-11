@@ -32,7 +32,7 @@ const Login = () => {
       .then((res) => {
         const token= res.data.jwt;
         //This is the jwt
-        console.log(res.data);
+        // console.log(res.data);
         //Decode the token
         if (token) {
           jwt.verify(token, `${secret}`, (err, decodedToken) => {
@@ -40,13 +40,23 @@ const Login = () => {
               setError("Error occured, Try again")
               history.push("/");
             } else {
-              console.log(decodedToken);
-              history.push("/admin");
+              // console.log(decodedToken);
+              // setError("Logging in . . .");
+              // setTimeout(()=>{
+                localStorage.setItem("jwt", token);
+                history.push("/admin");
+              // })
             }
           });
         } else {
           setError(res.data.message);
           history.push("/");
+        }
+        if(name==""){
+          setError("Please enter your name");
+        }
+        if(password==""){
+          setError("Please enter your password");
         }
       });
   };
