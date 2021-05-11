@@ -14,6 +14,8 @@ import {
 } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
 
+window.jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOTgyMWU0MDA2ZWMxMzU4ODE0MzM5MyIsImlhdCI6MTYyMDY1MTkyNywiZXhwIjoxNjIwOTExMTI3fQ.gd0L67z6Knc6spQpOAH8eSXunGyvDFnbFKFzY390PLA";
+
 // The main page with all the routing
 
 ReactDOM.render(
@@ -22,8 +24,8 @@ ReactDOM.render(
       <Switch>
       <Route path='/' component={Login} exact/>
       <Route path='/admin'>
-        <Navbar />
-        <Main />
+        <Navbar/>
+        <Main/>
       </Route>
       <Route path='/admin'>
         <Navbar />
