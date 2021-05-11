@@ -13,6 +13,7 @@ import {
   Route,
 } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
+import Logout from './logout';
 
 // The main page with all the routing
 
@@ -37,8 +38,10 @@ ReactDOM.render(
         <Navbar />
         <MainSignup />
       </Route>
+      <Route path='/logout'>
+        <Logout />
+      </Route>
       <Route component={Error} />
-      
       </Switch>
     </Router>
   </React.StrictMode>,

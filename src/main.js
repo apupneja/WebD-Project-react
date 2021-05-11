@@ -8,7 +8,11 @@ import React, {useState, useEffect} from "react";
 
 const Main = () => {
     const[data, setData]= useState([]);
-
+    const [message, setMessage]= useState(localStorage.getItem("message"));
+    setTimeout(()=>{
+        localStorage.removeItem("message");
+        setMessage("");
+    }, 5000);
     useEffect(() => {
         fetch("http://localhost:8000/inventory")
             .then((response) => response.json())
@@ -27,6 +31,7 @@ const Main = () => {
             <Component id="1" name="product" section="employee" location="2" quantity="4" category="elec" price="100"/>
         </div>
         <div>
+            <h1>{message}</h1>
             <div>Filter goes here</div>
             <div>
             {data && (data.map((dataset)=>(
