@@ -9,12 +9,14 @@ import {
 import { useState } from "react";
 import axios from "axios";
 const jwt = require("jsonwebtoken");
-//Used Semantic UI. This is the landing+login page.
+const {secret}= require("./config/keys");
 
 const Login = () => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError]=useState("");
+  
   const handleClick = (e) => {
     e.preventDefault();
     axios.post("http://localhost:8000/api/login", {
@@ -23,13 +25,29 @@ const Login = () => {
           password: password,
         },
         headers: {
-          "X-Requested-With": "XMLHttpRequest",
           "Content-Type": "application/json",
+          "Access-Control-Request-Origin": "http://localhost:3000"
         },
       })
       .then((res) => {
-        history.push("/admin");
-        console.log(res);
+        const token= res.data.jwt;
+        //This is the jwt
+        console.log(res.data);
+        //Decode the token
+        if (token) {
+          jwt.verify(token, `${secret}`, (err, decodedToken) => {
+            if (err) {
+              setError("Error occured, Try again")
+              history.push("/");
+            } else {
+              console.log(decodedToken);
+              history.push("/admin");
+            }
+          });
+        } else {
+          setError(res.data.message);
+          history.push("/");
+        }
       });
   };
 
@@ -46,7 +64,7 @@ const Login = () => {
               <br></br>
 
               <div className="header">LOG-IN</div>
-
+              <h2>{error}</h2>
               <br></br>
               <br></br>
               <Form.Input
