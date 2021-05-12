@@ -1,46 +1,44 @@
 import Component from './component';
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
-
+import { useHistory } from 'react-router';
+ 
 const Main = () => {
     const[inventory, setInventory]= useState([]);
-
+    const history= useHistory();
+ 
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
     }
-
+  
     const [message, setMessage]= useState(localStorage.getItem("message"));
     setTimeout(()=>{
         localStorage.removeItem("message");
         setMessage("");
     }, 5000);
     useEffect(() => {
-        fetch("http://localhost:8000/api/inventory")
-            .then((response) => response.json())
-            .then((json) =>{
-                setInventory(json.inventory);
-            });
-        // console.log( localStorage.getItem("jwt"));
-        // axios.get("http://localhoost:8000/api/inventory", {
-        //     data: {
-        //         cookie: localStorage.getItem("jwt"),
-        //       },
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //         "Access-Control-Request-Origin": "http://localhost:3000"
-        //       },
-        // }).then(res=>{
-        //     if(res.data.jwt)
-        //     {
-        //         setInventory(res.data.inventory)
-        //     }
-        // })
+        console.log(localStorage.getItem("jwt"));
+        axios.post("http://localhost:8000/api/inventory", {
+            data: {
+                cookie: localStorage.getItem("jwt")
+              },
+              headers: {
+                "Content-Type": "application/json"
+              },
+        }).then(res=>{
+            const token=res.data.jwt;
+            if(token){
+                setInventory(res.data.inventory);
                 console.log(inventory);
-            });
-
+            }
+            else{
+                console.log(res.data.message);
+                history.push("/");
+            }
+        })
     }, []);
-
+ 
     return (
         <> 
         <h1>{message}</h1>
@@ -55,10 +53,10 @@ const Main = () => {
                 {inventory.map(product=>(
                     <>
                     <br></br>
-                    <h1>{capitalize(product.product)}</h1>
+                    <h1 key={product._id}>{capitalize(product.product)}</h1>
                     <ul>
                         {product.details.map(detail=>(
-                            <Component id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
+                            <Component key={product._id}id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
                         ))}
                     </ul>
                     </>
