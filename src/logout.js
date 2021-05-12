@@ -2,15 +2,19 @@ import { useEffect } from "react";
 import { useHistory } from "react-router";
 
 const Logout = () => {
-    const history = useHistory();
+  const history = useHistory();
   useEffect(() => {
-      localStorage.removeItem("jwt");
-    fetch("http://localhost:8000/api/logout");
-    history.push("/");
+    localStorage.removeItem("jwt");
+    fetch("http://localhost:8000/api/logout")
+      .then((res) => {
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        history.push("/admin");
+      });
   }, []);
-  return (
-    <div></div>
-  );
+  return <div></div>;
 };
 
 export default Logout;
