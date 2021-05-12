@@ -1,11 +1,6 @@
 import Component from './component';
 import React, {useState, useEffect} from "react";
 
-//Below I tried to get data from the server.
-//Tried 100s of different way and this was one of them
-// This one isn't accurate. Pls fix if possible
-
-
 const Main = () => {
     const[inventory, setInventory]= useState([]);
 
@@ -23,8 +18,7 @@ const Main = () => {
         fetch("http://localhost:8000/api/inventory")
             .then((response) => response.json())
             .then((json) =>{
-                setInventory(json);
-                // console.log(json);
+                setInventory(json.inventory);
                 console.log(inventory);
             });
 
@@ -32,13 +26,12 @@ const Main = () => {
 
     return (
         <> 
+        <h1>{message}</h1>
         <div className="container">
             <span className="headingText">
                 Database
             </span>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            {/* <button className="filter">Filter</button> */}
-            {/* <Component id="1" name="product" section="employee" location="2" quantity="4" category="elec" price="100"/> */}
             <br></br>
         <div>
             <div>
