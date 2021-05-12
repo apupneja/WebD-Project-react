@@ -19,11 +19,7 @@ code {
   background-color: black;
   width: 100%;
   padding: 1.5%;
-}
-
-.name{
-  color: white;
-  margin-left: 3%;
+  text-align: center;
 }
 
 .heading{
@@ -36,15 +32,15 @@ code {
 }
 
 .headingText{
-  font-size:x-large;
-  font-weight: 600;
+  font-size:xx-large;
+  font-weight: 1000;
 }
 .product{
   background-color: rgba(165, 162, 162, 0.37);
   padding: 1%;
   margin: 1%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
 }
 
 
@@ -80,21 +76,9 @@ code {
 }
 
 .link{
-  position: absolute;
   color: white;
-  right: 5%;
-}
-
-.link2{
-  position: absolute;
-  color: white;
-  right: 15%;
-}
-
-.link3{
-  position: absolute;
-  color: white;
-  right: 29%;
+  margin: 5%;
+  align-self: center;
 }
 
 .link3{
