@@ -25,8 +25,7 @@ const Login = () => {
           password: password,
         },
         headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Request-Origin": "http://localhost:3000"
+          "Content-Type": "application/json"
         },
       })
       .then((res) => {

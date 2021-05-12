@@ -7,17 +7,20 @@ import React, {useState, useEffect} from "react";
 
 
 const Main = () => {
-    const[data, setData]= useState([]);
+    const[inventory, setInventory]= useState([]);
     const [message, setMessage]= useState(localStorage.getItem("message"));
     setTimeout(()=>{
         localStorage.removeItem("message");
         setMessage("");
     }, 5000);
     useEffect(() => {
-        fetch("http://localhost:8000/inventory")
+        fetch("http://localhost:8000/api/inventory")
             .then((response) => response.json())
-            .then((json) => setData(json));
-
+            .then((json) =>{
+                setInventory(json);
+                // console.log(json);
+                console.log(inventory);
+            });
     }, []);
 
     return (
@@ -34,11 +37,18 @@ const Main = () => {
             <h1>{message}</h1>
             <div>Filter goes here</div>
             <div>
-            {data && (data.map((dataset)=>(
-                <div>
-                    {dataset.product}
-                </div>
-            )))}
+            {inventory.map(product=>(
+                <>
+                <h1>{product.product}</h1>
+                <ul>
+                    {product.details.map(detail=>(
+                        <div>
+                            <p>{detail.name} Cost : {detail.cost}</p>
+                        </div>
+                    ))}
+                </ul>
+                </>
+            ))}
             </div>
         </div>
         </>
