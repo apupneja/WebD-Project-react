@@ -1,8 +1,11 @@
 import Component from './component';
 import React, {useState, useEffect} from "react";
+import axios from 'axios';
+import { useHistory } from 'react-router';
 
 const Main = () => {
     const[inventory, setInventory]= useState([]);
+    const history= useHistory();
 
     const capitalize = (s) => {
         if (typeof s !== 'string') return ''
@@ -15,13 +18,25 @@ const Main = () => {
         setMessage("");
     }, 5000);
     useEffect(() => {
-        fetch("http://localhost:8000/api/inventory")
-            .then((response) => response.json())
-            .then((json) =>{
-                setInventory(json.inventory);
+        console.log(localStorage.getItem("jwt"));
+        axios.post("http://localhost:8000/api/inventory", {
+            data: {
+                cookie: localStorage.getItem("jwt")
+              },
+              headers: {
+                "Content-Type": "application/json"
+              },
+        }).then(res=>{
+            const token=res.data.jwt;
+            if(token){
+                setInventory(res.data.inventory);
                 console.log(inventory);
-            });
-
+            }
+            else{
+                console.log(res.data.message);
+                history.push("/");
+            }
+        })
     }, []);
 
     return (
@@ -38,10 +53,10 @@ const Main = () => {
                 {inventory.map(product=>(
                     <>
                     <br></br>
-                    <h1>{capitalize(product.product)}</h1>
+                    <h1 key={product._id}>{capitalize(product.product)}</h1>
                     <ul>
                         {product.details.map(detail=>(
-                            <Component id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
+                            <Component key={detail._id}id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
                         ))}
                     </ul>
                     </>
