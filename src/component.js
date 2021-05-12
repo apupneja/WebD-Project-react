@@ -9,14 +9,13 @@ import Popup from './popup';
 
 const Component = (props) => { 
     const [pop, setpop] = useState(false);
-    // const [{quantity}, setQuantity] = useState(0);
+    const [{quantity}, setQuantity] = useState(0);
   
-    // const handleSubmit = (evt) => {
-    //     alert(`Submitting quantity ${props.quantity}`)
-    //     console.log(quantity)
-    // }
-
-    return (  
+    const handleSubmit = (evt) => {
+        alert(`Submitting quantity ${props.quantity}`)
+        console.log(quantity)
+    }
+    return (
         <div className="product">
             <div className="element">
                 {props.id}
@@ -27,6 +26,7 @@ const Component = (props) => {
             <div className="element">
                 {props.location}
             </div>
+        
             {/* <form onSubmit={handleSubmit}> 
                 <input
                 type="number"
@@ -40,9 +40,8 @@ const Component = (props) => {
             <Popup trigger={pop} setTrigger={setpop}>
                     <h3>More Info</h3>
                     <p>
-                        Price={props.price}<br></br>
-                        Employee={props.section}<br></br>
-                        Category={props.category}
+                        Price : {props.price}<br></br>
+                        Category : {props.category}
                     </p>
             </Popup>
             

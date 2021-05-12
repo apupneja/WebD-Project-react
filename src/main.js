@@ -7,12 +7,21 @@ import React, {useState, useEffect} from "react";
 
 
 const Main = () => {
-    const[data, setData]= useState([]);
+    const[inventory, setInventory]= useState([]);
+
+    const capitalize = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    }
 
     useEffect(() => {
-        fetch("http://localhost:8000/inventory")
+        fetch("http://localhost:8000/api/inventory")
             .then((response) => response.json())
-            .then((json) => setData(json));
+            .then((json) =>{
+                setInventory(json);
+                // console.log(json);
+                console.log(inventory);
+            });
 
     }, []);
 
@@ -23,18 +32,24 @@ const Main = () => {
                 Database
             </span>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="filter">Filter</button>
-            <Component id="1" name="product" section="employee" location="2" quantity="4" category="elec" price="100"/>
-        </div>
+            {/* <button className="filter">Filter</button> */}
+            {/* <Component id="1" name="product" section="employee" location="2" quantity="4" category="elec" price="100"/> */}
+            <br></br>
         <div>
-            <div>Filter goes here</div>
             <div>
-            {data && (data.map((dataset)=>(
-                <div>
-                    {dataset.product}
-                </div>
-            )))}
+                {inventory.map(product=>(
+                    <>
+                    <br></br>
+                    <h1>{capitalize(product.product)}</h1>
+                    <ul>
+                        {product.details.map(detail=>(
+                            <Component id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
+                        ))}
+                    </ul>
+                    </>
+                ))}
             </div>
+        </div>
         </div>
         </>
      );
