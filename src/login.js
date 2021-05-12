@@ -16,7 +16,8 @@ const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError]=useState("");
-  
+
+
   const handleClick = (e) => {
     e.preventDefault();
     axios.post("http://localhost:8000/api/login", {
@@ -25,8 +26,7 @@ const Login = () => {
           password: password,
         },
         headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Request-Origin": "http://localhost:3000"
+          "Content-Type": "application/json"
         },
       })
       .then((res) => {
@@ -99,3 +99,4 @@ const Login = () => {
 };
 
 export default Login;
+
