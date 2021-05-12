@@ -1,9 +1,5 @@
 import { Button, Form, Message , Dropdown} from 'semantic-ui-react'
 
-//Used semantic UI to create this form
-//The value right below are the options for dropdown 
-//options semantic UI
-//possible addition is of input logs below this form
 const categoryOptions = [
     {
       key: 'Dairy',

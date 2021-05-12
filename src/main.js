@@ -1,10 +1,6 @@
 import Component from './component';
 import React, {useState, useEffect} from "react";
-
-//Below I tried to get data from the server.
-//Tried 100s of different way and this was one of them
-// This one isn't accurate. Pls fix if possible
-
+import axios from 'axios';
 
 const Main = () => {
     const[inventory, setInventory]= useState([]);
@@ -17,10 +13,23 @@ const Main = () => {
         fetch("http://localhost:8000/api/inventory")
             .then((response) => response.json())
             .then((json) =>{
-                setInventory(json);
-                // console.log(json);
-                console.log(inventory);
+                setInventory(json.inventory);
             });
+        // console.log( localStorage.getItem("jwt"));
+        // axios.get("http://localhoost:8000/api/inventory", {
+        //     data: {
+        //         cookie: localStorage.getItem("jwt"),
+        //       },
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //         "Access-Control-Request-Origin": "http://localhost:3000"
+        //       },
+        // }).then(res=>{
+        //     if(res.data.jwt)
+        //     {
+        //         setInventory(res.data.inventory)
+        //     }
+        // })
     }, []);
 
     return (

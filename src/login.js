@@ -25,26 +25,20 @@ const Login = () => {
           password: password,
         },
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Access-Control-Request-Origin": "http://localhost:3000"
         },
       })
       .then((res) => {
         const token= res.data.jwt;
-        //This is the jwt
-        // console.log(res.data);
-        //Decode the token
         if (token) {
           jwt.verify(token, `${secret}`, (err, decodedToken) => {
             if (err) {
               setError("Error occured, Try again")
               history.push("/");
             } else {
-              // console.log(decodedToken);
-              // setError("Logging in . . .");
-              // setTimeout(()=>{
                 localStorage.setItem("jwt", token);
                 history.push("/admin");
-              // })
             }
           });
         } else {
