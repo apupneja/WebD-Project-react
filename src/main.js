@@ -1,5 +1,6 @@
 import Component from './component';
 import React, {useState, useEffect} from "react";
+import axios from 'axios';
 
 const Main = () => {
     const[inventory, setInventory]= useState([]);
@@ -8,7 +9,7 @@ const Main = () => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
     }
-  
+
     const [message, setMessage]= useState(localStorage.getItem("message"));
     setTimeout(()=>{
         localStorage.removeItem("message");
@@ -19,6 +20,22 @@ const Main = () => {
             .then((response) => response.json())
             .then((json) =>{
                 setInventory(json.inventory);
+            });
+        // console.log( localStorage.getItem("jwt"));
+        // axios.get("http://localhoost:8000/api/inventory", {
+        //     data: {
+        //         cookie: localStorage.getItem("jwt"),
+        //       },
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //         "Access-Control-Request-Origin": "http://localhost:3000"
+        //       },
+        // }).then(res=>{
+        //     if(res.data.jwt)
+        //     {
+        //         setInventory(res.data.inventory)
+        //     }
+        // })
                 console.log(inventory);
             });
 

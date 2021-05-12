@@ -31,21 +31,14 @@ const Login = () => {
       })
       .then((res) => {
         const token= res.data.jwt;
-        //This is the jwt
-        // console.log(res.data);
-        //Decode the token
         if (token) {
           jwt.verify(token, `${secret}`, (err, decodedToken) => {
             if (err) {
               setError("Error occured, Try again")
               history.push("/");
             } else {
-              // console.log(decodedToken);
-              // setError("Logging in . . .");
-              // setTimeout(()=>{
                 localStorage.setItem("jwt", token);
                 history.push("/admin");
-              // })
             }
           });
         } else {
