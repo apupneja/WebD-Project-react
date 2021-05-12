@@ -81,6 +81,12 @@ code {
   align-self: center;
 }
 
+.link3{
+  position: absolute;
+  color: white;
+  right: 38%;
+}
+
 .edit{
   margin:20%;
 

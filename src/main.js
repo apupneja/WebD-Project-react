@@ -13,7 +13,12 @@ const Main = () => {
         if (typeof s !== 'string') return ''
         return s.charAt(0).toUpperCase() + s.slice(1)
     }
-
+  
+    const [message, setMessage]= useState(localStorage.getItem("message"));
+    setTimeout(()=>{
+        localStorage.removeItem("message");
+        setMessage("");
+    }, 5000);
     useEffect(() => {
         fetch("http://localhost:8000/api/inventory")
             .then((response) => response.json())
