@@ -18,7 +18,6 @@ const Main = () => {
         setMessage("");
     }, 5000);
     useEffect(() => {
-        console.log(localStorage.getItem("jwt"));
         axios.post("http://localhost:8000/api/inventory", {
             data: {
                 cookie: localStorage.getItem("jwt")
@@ -30,7 +29,6 @@ const Main = () => {
             const token=res.data.jwt;
             if(token){
                 setInventory(res.data.inventory);
-                console.log(inventory);
             }
             else{
                 console.log(res.data.message);

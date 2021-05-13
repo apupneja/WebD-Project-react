@@ -1,4 +1,7 @@
 import { Button, Form, Message , Dropdown} from 'semantic-ui-react'
+import axios from "axios";
+import {useEffect, useState} from "react";
+import { useHistory } from 'react-router';
 
 const categoryOptions = [
     {
@@ -19,6 +22,28 @@ const categoryOptions = [
 ]
 
 const MainEdit = () => {
+  const [inventory, setInventory]=useState([]);
+  const history=useHistory();
+  
+  useEffect(() => {
+    axios.post("http://localhost:8000/api/inventory", {
+        data: {
+            cookie: localStorage.getItem("jwt")
+          },
+          headers: {
+            "Content-Type": "application/json"
+          },
+    }).then(res=>{
+        const token=res.data.jwt;
+        if(token){
+            setInventory(res.data.inventory);
+        }
+        else{
+            console.log(res.data.message);
+            history.push("/");
+        }
+    })
+}, []);
     return ( 
         <div className="edit">
             <Form error>

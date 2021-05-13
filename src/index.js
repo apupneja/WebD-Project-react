@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
 import Logout from './logout';
+import Download from './download';
 
 window.jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwOTgyMWU0MDA2ZWMxMzU4ODE0MzM5MyIsImlhdCI6MTYyMDY1MTkyNywiZXhwIjoxNjIwOTExMTI3fQ.gd0L67z6Knc6spQpOAH8eSXunGyvDFnbFKFzY390PLA";
 
@@ -24,10 +25,6 @@ ReactDOM.render(
     <Router>
       <Switch>
       <Route path='/' component={Login} exact/>
-      <Route path='/admin'>
-        <Navbar/>
-        <Main/>
-      </Route>
       <Route path='/admin'>
         <Navbar />
         <Main />
@@ -43,6 +40,9 @@ ReactDOM.render(
       <Route path='/logout'>
         <Logout />
       </Route>
+      {/* <Route path='/download'>
+        <Download />
+      </Route> */}
       <Route component={Error} />
       </Switch>
     </Router>

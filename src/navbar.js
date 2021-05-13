@@ -9,11 +9,11 @@ const Navbar = () => {
     return ( 
         <nav className="navbar">
             <div className="name">
-
+            <Link to="./admin" className="link" >INVENTORY</Link>
+                <Link to="./edit" className="link" >EDIT INVENTORY</Link>
+                <Link to="./signup" className="link" >CREATE NEW ADMIN</Link>
                 <Link to="./logout" className="link">LOGOUT</Link>
-                <Link to="./edit" className="link" >EDIT</Link>
-                <Link to="./signup" className="link" >SIGN UP</Link>
-                <Link to="./admin" className="link" >INVENTORY</Link>
+                {/* <Link to="./download" className="link">DOWNLOAD INVENTORY</Link> */}
 
             </div>
         </nav>
