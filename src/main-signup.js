@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import axios from "axios";
@@ -8,7 +8,6 @@ const { secret } = require("./config/keys");
 const MainSignup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [box, setBox] = useState(null);
   const history = useHistory();
   const token = localStorage.getItem("jwt");
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import ReactToPrint from 'react-to-print';
- 
+ import {Table, Label, Menu, Icon, Button, Segment} from "semantic-ui-react"
  
 const capitalize = (s) => {
   if (typeof s !== 'string') return ''
@@ -36,7 +36,14 @@ const Download = () => {
     return ( 
         <div>
             <ReactToPrint
-                trigger={() => <button>Print</button>}
+                trigger={() =><Segment inverted>
+                     <Button animated inverted color='black'>
+                    <Button.Content visible>Print</Button.Content>
+                    <Button.Content hidden>
+                      <Icon name='print' />
+                    </Button.Content>
+                  </Button>
+                </Segment>}
                 content={() => componentRef.current}
             />
             <Print inventory={inventory} ref={componentRef} />
@@ -66,25 +73,26 @@ class Print extends React.Component {
 
 const ComponentMod = (props) => { 
     return (
-        <div className="productMod">
-            <div className="element">
-                {props.id}
-            </div>
-            <div className="element">
-                {props.name}
-            </div>
-            <div className="element">
-                {props.location}
-            </div>
-            <div className="element">
-                {props.price}
-            </div>
-            <div className="element">
-                {props.category}
-            </div>
-            
-            
-        </div>
+            <Table fixed>
+    <Table.Header>
+      <Table.Row>
+      <Table.HeaderCell>ID Number</Table.HeaderCell>
+        <Table.HeaderCell>Name</Table.HeaderCell>
+        <Table.HeaderCell>Cost</Table.HeaderCell>
+        <Table.HeaderCell>Aisle Number</Table.HeaderCell>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>
+          <Label ribbon>{props.id}</Label>
+        </Table.Cell>
+        <Table.Cell>{props.name}</Table.Cell>
+        <Table.Cell>{props.price}</Table.Cell>
+        <Table.Cell>{props.location}</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
     );
 }
  
