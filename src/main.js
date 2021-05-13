@@ -1,16 +1,18 @@
 import Component from './component';
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import axios from 'axios';
 import { useHistory } from 'react-router';
+
+// import ComponentToPrint from './ComponentToPrint';
+
+const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
  
 const Main = () => {
-    const[inventory, setInventory]= useState([]);
+    const [inventory, setInventory]= useState([]);
     const history= useHistory();
- 
-    const capitalize = (s) => {
-        if (typeof s !== 'string') return ''
-        return s.charAt(0).toUpperCase() + s.slice(1)
-    }
   
     const [message, setMessage]= useState(localStorage.getItem("message"));
     setTimeout(()=>{
@@ -65,5 +67,5 @@ const Main = () => {
         </>
      );
 }
- 
+
 export default Main;
