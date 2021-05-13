@@ -40,9 +40,9 @@ ReactDOM.render(
       <Route path='/logout'>
         <Logout />
       </Route>
-      {/* <Route path='/download'>
+      <Route path='/download'>
         <Download />
-      </Route> */}
+      </Route>
       <Route component={Error} />
       </Switch>
     </Router>
