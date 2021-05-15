@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import axios from "axios";
+import React from "react";
 const jwt = require("jsonwebtoken");
 const { secret } = require("./config/keys");
 
@@ -59,7 +60,10 @@ if (token) {
           />
         </Form.Field>
         <Form.Field>
-          <Checkbox label="I want to create this user" />
+          <Checkbox 
+          label="I want to create this user"
+          defaultChecked
+           />
         </Form.Field>
         <Button type="submit">Submit</Button>
       </Form>
