@@ -1,7 +1,7 @@
 
 import {useEffect} from "react";
 import {useHistory} from "react-router-dom";
-
+import React from 'react';
 
 const Logout = () => {
   const history = useHistory();
@@ -16,7 +16,7 @@ const Logout = () => {
         history.push("/admin");
       });
   }, []);
-  return <div></div>;
+  return (<div></div>);
 
 };
   

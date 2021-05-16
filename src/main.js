@@ -2,6 +2,7 @@ import Component from './component';
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import {Dropdown} from 'semantic-ui-react'
 
 // import ComponentToPrint from './ComponentToPrint';
 
@@ -40,7 +41,7 @@ const Main = () => {
     }, []);
  
     return (
-        <> 
+        <div>
         <h1>{message}</h1>
         <div className="container">
             <span className="headingText">
@@ -51,7 +52,8 @@ const Main = () => {
         <div>
             <div>
                 {inventory.map(product=>(
-                    <>
+                    
+                    <div>
                     <br></br>
                     <h1 key={product._id}>{capitalize(product.product)}</h1>
                     <ul>
@@ -59,12 +61,15 @@ const Main = () => {
                             <Component key={product._id}id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
                         ))}
                     </ul>
-                    </>
+                    </div>
+                    
+                   
+            
                 ))}
             </div>
         </div>
         </div>
-        </>
+        </div>
      );
 }
 

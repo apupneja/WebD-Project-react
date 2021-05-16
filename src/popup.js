@@ -1,5 +1,5 @@
 //Pop up for more info
-
+import React from "react";
 const Popup = (content) => {
     return ( content.trigger) ?(
         <div className="popup">

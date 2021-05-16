@@ -1,4 +1,5 @@
 import "./login.css";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import {
   Form,
@@ -45,12 +46,15 @@ const Login = () => {
           setError(res.data.message);
           history.push("/");
         }
-        if(name==""){
+        if(name===""){
           setError("Please enter your name");
         }
-        if(password==""){
+        if(password===""){
           setError("Please enter your password");
         }
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
