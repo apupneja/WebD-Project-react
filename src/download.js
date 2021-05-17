@@ -9,6 +9,10 @@ const capitalize = (s) => {
   if (typeof s !== 'string') return ''
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
+
+const slice = (id) => {
+  return id.slice(18,24)
+}
  
 const Download = () => {
     const [inventory, setInventory]=useState([]);
@@ -70,11 +74,12 @@ class Print extends React.Component {
                           <Table.HeaderCell>ID Number</Table.HeaderCell>
                             <Table.HeaderCell>Name</Table.HeaderCell>
                             <Table.HeaderCell>Cost</Table.HeaderCell>
+                            <Table.HeaderCell>Quantity</Table.HeaderCell>
                             <Table.HeaderCell>Aisle Number</Table.HeaderCell>
                           </Table.Row>
                         </Table.Header>
                         {product.details.map(detail=>(
-                            <ComponentMod key={product._id}id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
+                            <ComponentMod key={product._id}id={slice(detail._id)} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
                         ))}
                         </Table>
                     </ul>
@@ -96,6 +101,7 @@ const ComponentMod = (props) => {
         </Table.Cell>
         <Table.Cell>{props.name}</Table.Cell>
         <Table.Cell>{props.price}</Table.Cell>
+        <Table.Cell>{props.quantity}</Table.Cell>
         <Table.Cell>{props.location}</Table.Cell>
       </Table.Row>
     </Table.Body>
