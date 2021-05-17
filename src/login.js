@@ -3,9 +3,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import {
   Form,
-  FormButton,
   Grid,
-  Segment,
+  Segment, Button,Icon
 } from "semantic-ui-react";
 import { useState } from "react";
 import axios from "axios";
@@ -62,7 +61,7 @@ const Login = () => {
               <br></br>
 
               <div className="header">LOG-IN</div>
-              <h2>{error}</h2>
+              <h2 style={{fontSize:"14px",color:"red"}}>{error}</h2>
               <br></br>
               <br></br>
               <Form.Input
@@ -84,7 +83,12 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <br></br>
-              <FormButton>Submit</FormButton>
+              <Button animated>
+                <Button.Content visible>Submit</Button.Content>
+                <Button.Content hidden>
+                  <Icon name='chevron right' />
+                </Button.Content>
+              </Button>
             </Segment>
           </Form>
         </Grid.Column>

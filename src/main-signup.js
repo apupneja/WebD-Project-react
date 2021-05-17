@@ -66,24 +66,27 @@ const MainSignup = () => {
     <div className="edit">
       <Form onSubmit={handleClick}>
         <Form.Field>
-          <label>New Username</label>
+          <label style={{fontSize:"16px"}}>New Username</label>
+          <h3 style={{fontSize:"14px",color:"red"}}>{nameError}</h3>
           <input
             onChange={(e) => setName(e.target.value)}
             type="text"
             placeholder="Name of the new user"
             name="name"
+            
           />
-          <h3>{nameError}</h3>
+          
         </Form.Field>
         <Form.Field>
-          <label>Password</label>
+          <label style={{fontSize:"16px"}}>Password</label>
+          <h3 style={{fontSize:"14px",color:"red"}}>{passwordError}</h3>
           <input
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password for the user"
             name="password"
           />
-          <h3>{passwordError}</h3>
+         
         </Form.Field>
         <Form.Field>
         <Checkbox label='I want to create this new user' checked={check} onChange={Checked}/>
