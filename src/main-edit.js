@@ -8,7 +8,12 @@ let categoryOptions = [], inventory;
 
 const MainEdit = () => {
   const [categoryOptions, setCategoryOptions] = useState([]);
+  const [value, setValue] = useState("");
   const history = useHistory();
+  const [productId, setProductId] = useState("");
+  const [detailsId, setDetailsId] = useState("");
+  const [details, setDetails] = useState({});
+
   useEffect(() => {
     axios
       .post("http://localhost:8000/api/inventory", {
@@ -25,9 +30,9 @@ const MainEdit = () => {
           inventory = res.data.inventory;
           inventory.map((category) => {
             const object = {
-              key: category.product,
+              key: category._id,
               text: category.product,
-              value: category.product,
+              value: category._id,
             };
             categoryOptions.push(object);
           });
@@ -38,22 +43,30 @@ const MainEdit = () => {
         }
       });
   }, []);
+
+  const handleClick = (e) =>{
+    e.preventDefault();
+    
+  }
+
   return (
     <div className="edit">
-      <Form error>
+      <Form error  onSubmit={handleClick}>
         <Form.Input label="Category">
-          <Dropdown
+          <Form.Dropdown
             placeholder="Category"
             fluid
+            onChange={(e, data)=> setProductId(data.value)}
             selection
             options={categoryOptions}
           />
-          <Form.Input label="Item" placeholder="Laptop" />
+          </Form.Input>
+          <Form.Input label="Item" placeholder="Laptop" onChange={(e) => setProductId(e.target.value)} />
           <Form.Input label="Quantity" placeholder="3" />
-        </Form.Input>
         <Form.Input label="Location" placeholder="Location" />
         <Button>Submit</Button>
       </Form>
+      <h1>{productId}</h1>
     </div>
   );
 };
