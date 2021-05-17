@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import ReactToPrint from 'react-to-print';
- import {Table, Label, Menu, Icon, Button, Segment, Container} from "semantic-ui-react"
+ import {Table, Label, Icon, Button, Container} from "semantic-ui-react"
  
 const capitalize = (s) => {
   if (typeof s !== 'string') return ''

@@ -2,7 +2,6 @@ import Component from './component';
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import { useHistory } from 'react-router';
-import {Dropdown} from 'semantic-ui-react'
 
 // import ComponentToPrint from './ComponentToPrint';
 

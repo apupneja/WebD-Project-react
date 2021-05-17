@@ -4,15 +4,18 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import React from "react";
 
-let categoryOptions = [], inventory;
+let inventory,
+  categoryOptions = [],
+  itemOptions = [],id,ID;
 
 const MainEdit = () => {
-  const [categoryOptions, setCategoryOptions] = useState([]);
-  const [value, setValue] = useState("");
   const history = useHistory();
-  const [productId, setProductId] = useState("");
-  const [detailsId, setDetailsId] = useState("");
-  const [details, setDetails] = useState({});
+  const [items, setItems] = useState([]);
+  const [productId, setProductId] = useState(null);
+  const [detailsId, setDetailsId] = useState(null);
+  const [quantity, setQuantity] = useState("");
+  const [cost, setCost] = useState("");
+  const [aisle, setAisle] = useState("");
 
   useEffect(() => {
     axios
@@ -36,7 +39,6 @@ const MainEdit = () => {
             };
             categoryOptions.push(object);
           });
-          setCategoryOptions(categoryOptions);
         } else {
           console.log(res.data.message);
           history.push("/");
@@ -44,29 +46,86 @@ const MainEdit = () => {
       });
   }, []);
 
-  const handleClick = (e) =>{
-    e.preventDefault();
-    
+  function DisplayItems(e, data) {
+    itemOptions=[];
+    setProductId(data.value);
+    ID= data.value;
+    inventory.map((product) => {
+      if (product._id === ID) {
+        product.details.map((item) => {
+          const object = {
+            key: item._id,
+            text: item.name,
+            value: item._id,
+          };
+          itemOptions.push(object);
+        });
+        setItems(itemOptions);
+      }
+    });
   }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    axios.patch(`http://localhost:8000/api/edit/${ID}/${id}`,{
+      data:{
+        cookie: localStorage.getItem("jwt"),
+        items: {
+          quantity,
+          cost,
+          aisle
+        },
+      },
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res=>{
+      localStorage.setItem("message", res.data.message);
+      history.push("/admin");
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+  };
 
   return (
     <div className="edit">
-      <Form error  onSubmit={handleClick}>
+      <Form error onSubmit={handleClick}>
         <Form.Input label="Category">
-          <Form.Dropdown
+          <Dropdown
             placeholder="Category"
             fluid
-            onChange={(e, data)=> setProductId(data.value)}
+            onChange={DisplayItems}
             selection
             options={categoryOptions}
           />
-          </Form.Input>
-          <Form.Input label="Item" placeholder="Laptop" onChange={(e) => setProductId(e.target.value)} />
-          <Form.Input label="Quantity" placeholder="3" />
-        <Form.Input label="Location" placeholder="Location" />
-        <Button>Submit</Button>
+        </Form.Input>
+        {productId && (
+          <div>
+            <Form.Input label="Item">
+              <Form.Dropdown
+                placeholder="Items"
+                fluid
+                onChange={(e, data) =>{
+                  setDetailsId(data.value);
+                  id=data.value;
+                }}
+                selection
+                options={items}
+              />
+            </Form.Input>
+            {detailsId && (
+              <div>
+                <Form.Input label="Quantity" onChange={e=>setQuantity(e.target.value)} />
+                <Form.Input label="Cost" icon="rupee" onChange={e=>setCost(e.target.value)} />
+                <Form.Input label="Aisle Number" onChange={e=>setAisle(e.target.value)}/>
+                <Button>Submit</Button>
+              </div>
+            )}
+          </div>
+        )}
       </Form>
-      <h1>{productId}</h1>
     </div>
   );
 };
