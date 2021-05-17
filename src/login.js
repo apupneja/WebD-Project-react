@@ -9,8 +9,6 @@ import {
 } from "semantic-ui-react";
 import { useState } from "react";
 import axios from "axios";
-const jwt = require("jsonwebtoken");
-const {secret}= require("./config/keys");
 
 const Login = () => {
   const history = useHistory();
@@ -33,15 +31,8 @@ const Login = () => {
       .then((res) => {
         const token= res.data.jwt;
         if (token) {
-          jwt.verify(token, `${secret}`, (err, decodedToken) => {
-            if (err) {
-              setError("Error occured, Try again")
-              history.push("/");
-            } else {
                 localStorage.setItem("jwt", token);
                 history.push("/admin");
-            }
-          });
         } else {
           setError(res.data.message);
           history.push("/");

@@ -58,7 +58,7 @@ const Main = () => {
                     <h1 key={product._id}>{capitalize(product.product)}</h1>
                     <ul>
                         {product.details.map(detail=>(
-                            <Component key={product._id}id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
+                            <Component key={detail._id} id={detail._id} name={detail.name} location={detail.aisle} quantity={detail.quantity} price={detail.cost} category={product.product}/>
                         ))}
                     </ul>
                     </div>

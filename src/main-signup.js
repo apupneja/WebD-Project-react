@@ -3,31 +3,25 @@ import { useHistory } from "react-router";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import axios from "axios";
 import React from "react";
-const jwt = require("jsonwebtoken");
-const { secret } = require("./config/keys");
 
 const MainSignup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const token = localStorage.getItem("jwt");
+  const [check, isChecked]= useState(false);
 
-if (token) {
-    jwt.verify(token, `${secret}`, (err, decodedToken) => {
-      if (err) {
-        history.push("/");
-      }
-    })}
-    else{
-        history.push("/");
-    }
+  function Checked(){
+    isChecked(!check);
+    console.log(check);
+  }
+  
   const handleClick = (e) => {
     e.preventDefault();
             axios.post("http://localhost:8000/api/signup", {
         data: {
           name: name,
           password: password,
-          cookie: token,
+          cookie: localStorage.getItem("jwt"),
         },
         headers: {
           "Content-Type": "application/json",
@@ -60,12 +54,9 @@ if (token) {
           />
         </Form.Field>
         <Form.Field>
-          <Checkbox 
-          label="I want to create this user"
-          defaultChecked
-           />
+        <Checkbox label='I want to create this new user' checked={check} onChange={Checked}/>
         </Form.Field>
-        <Button type="submit">Submit</Button>
+        {check && <Button type="submit">Submit</Button>}
       </Form>
     </div>
   );
