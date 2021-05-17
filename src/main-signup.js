@@ -9,6 +9,8 @@ const MainSignup = () => {
   const [password, setPassword] = useState("");
   const history = useHistory();
   const [check, isChecked]= useState(false);
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   function Checked(){
     isChecked(!check);
@@ -17,6 +19,33 @@ const MainSignup = () => {
   
   const handleClick = (e) => {
     e.preventDefault();
+    setNameError("");
+    setPasswordError("");
+    if(name===""){
+      setNameError("Please enter a username");
+      setTimeout(()=>{
+        setNameError("");
+      },4000)
+    }
+    else if(name.length<5){
+      setNameError("Username should have a minimum length of 5 characters");
+      setTimeout(()=>{
+        setNameError("");
+      },4000)
+    }
+    else if(password===""){
+      setPasswordError("Please enter a password");
+      setTimeout(()=>{
+        setPasswordError("");
+      },4000)
+    }
+    else if(password.length<5){
+      setPasswordError("Password length should be of minimum 5 characters");
+      setTimeout(()=>{
+        setPasswordError("");
+      },4000)
+    }
+    else{
             axios.post("http://localhost:8000/api/signup", {
         data: {
           name: name,
@@ -25,12 +54,13 @@ const MainSignup = () => {
         },
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Request-Origin": "http://localhost:3000"
+          "Access-Control-Request-Origin": "http://localhost:4000"
         },
       }).then(res=>{
         localStorage.setItem("message", res.data.message)
         history.push("/admin");
       });
+    }
   };
   return (
     <div className="edit">
@@ -43,6 +73,7 @@ const MainSignup = () => {
             placeholder="Name of the new user"
             name="name"
           />
+          <h3>{nameError}</h3>
         </Form.Field>
         <Form.Field>
           <label>Password</label>
@@ -52,6 +83,7 @@ const MainSignup = () => {
             placeholder="Password for the user"
             name="password"
           />
+          <h3>{passwordError}</h3>
         </Form.Field>
         <Form.Field>
         <Checkbox label='I want to create this new user' checked={check} onChange={Checked}/>
