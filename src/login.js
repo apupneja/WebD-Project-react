@@ -1,11 +1,7 @@
 import "./login.css";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import {
-  Form,
-  Grid,
-  Segment, Button,Icon
-} from "semantic-ui-react";
+import { Form, Grid, Segment, Button, Icon } from "semantic-ui-react";
 import { useState } from "react";
 import axios from "axios";
 
@@ -13,39 +9,40 @@ const Login = () => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError]=useState("");
-
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleClick = (e) => {
+    setPasswordError("");
+    setNameError("");
     e.preventDefault();
-    axios.post("http://localhost:8000/api/login", {
+    if (name === "") {
+      setNameError("Please enter your name");
+    }
+    else if (password === "") {
+      setPasswordError("Please enter your password");
+    }
+    else{
+      axios
+      .post("http://localhost:8000/api/login", {
         data: {
           name: name,
           password: password,
         },
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        const token= res.data.jwt;
-        if (token) {
-                localStorage.setItem("jwt", token);
-                history.push("/admin");
-        } else {
-          setError(res.data.message);
-          history.push("/");
-        }
-        if(name===""){
-          setError("Please enter your name");
-        }
-        if(password===""){
-          setError("Please enter your password");
-        }
+        console.log(res.data.jwt)
+        localStorage.setItem("jwt", res.data.jwt);
+        history.push("/admin");
       })
-      .catch((error) => {
-        console.error(error);
+      .catch((err) => {
+        setNameError(err.response.data.errors.name);
+        setPasswordError(err.response.data.errors.password);
       });
+    }
   };
 
   return (
@@ -61,7 +58,6 @@ const Login = () => {
               <br></br>
 
               <div className="header">LOG-IN</div>
-              <h2 style={{fontSize:"14px",color:"red"}}>{error}</h2>
               <br></br>
               <br></br>
               <Form.Input
@@ -73,6 +69,7 @@ const Login = () => {
                 placeholder="Name"
                 onChange={(e) => setName(e.target.value)}
               />
+              <h2 style={{fontSize:"14px",color:"red"}}>{nameError}</h2>
               <Form.Input
                 fluid
                 icon="lock"
@@ -82,11 +79,12 @@ const Login = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <h2 style={{fontSize:"14px",color:"red"}}>{passwordError}</h2>
               <br></br>
               <Button animated>
                 <Button.Content visible>Submit</Button.Content>
                 <Button.Content hidden>
-                  <Icon name='chevron right' />
+                  <Icon name="chevron right" />
                 </Button.Content>
               </Button>
             </Segment>
@@ -98,4 +96,3 @@ const Login = () => {
 };
 
 export default Login;
-
