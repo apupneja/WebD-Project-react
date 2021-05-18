@@ -32,14 +32,9 @@ const Main = () => {
                 "Content-Type": "application/json"
               },
         }).then(res=>{
-            const token=res.data.jwt;
-            if(token){
                 setInventory(res.data.inventory);
-            }
-            else{
-                console.log(res.data.message);
+        }).catch(err=>{
                 history.push("/");
-            }
         })
     }, []);
  
@@ -66,9 +61,6 @@ const Main = () => {
                         ))}
                     </ul>
                     </div>
-                    
-                   
-            
                 ))}
             </div>
         </div>

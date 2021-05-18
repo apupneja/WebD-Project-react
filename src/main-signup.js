@@ -54,11 +54,13 @@ const MainSignup = () => {
         },
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Request-Origin": "http://localhost:4000"
         },
       }).then(res=>{
         localStorage.setItem("message", res.data.message)
         history.push("/admin");
+      })
+      .catch(err=>{
+        history.push("/");
       });
     }
   };

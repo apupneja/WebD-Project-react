@@ -6,7 +6,9 @@ import React from "react";
 
 let inventory,
   categoryOptions = [],
-  itemOptions = [],id,ID;
+  itemOptions = [],
+  id,
+  ID;
 
 const MainEdit = () => {
   const history = useHistory();
@@ -28,28 +30,25 @@ const MainEdit = () => {
         },
       })
       .then((res) => {
-        const token = res.data.jwt;
-        if (token) {
-          inventory = res.data.inventory;
-          inventory.map((category) => {
-            const object = {
-              key: category._id,
-              text: category.product,
-              value: category._id,
-            };
-            categoryOptions.push(object);
-          });
-        } else {
-          console.log(res.data.message);
-          history.push("/");
-        }
+        inventory = res.data.inventory;
+        inventory.map((category) => {
+          const object = {
+            key: category._id,
+            text: category.product,
+            value: category._id,
+          };
+          categoryOptions.push(object);
+        });
+      })
+      .catch(err=>{
+        history.push("/");
       });
   }, []);
 
   function DisplayItems(e, data) {
-    itemOptions=[];
+    itemOptions = [];
     setProductId(data.value);
-    ID= data.value;
+    ID = data.value;
     inventory.map((product) => {
       if (product._id === ID) {
         product.details.map((item) => {
@@ -67,26 +66,27 @@ const MainEdit = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    axios.patch(`http://localhost:8000/api/edit/${ID}/${id}`,{
-      data:{
-        cookie: localStorage.getItem("jwt"),
-        items: {
-          quantity,
-          cost,
-          aisle
+    axios
+      .patch(`http://localhost:8000/api/edit/${ID}/${id}`, {
+        data: {
+          cookie: localStorage.getItem("jwt"),
+          items: {
+            quantity,
+            cost,
+            aisle,
+          },
         },
-      },
-      headers:{
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res=>{
-      localStorage.setItem("message", res.data.message);
-      history.push("/admin");
-    })
-    .catch(err=>{
-      console.log(err);
-    });
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        localStorage.setItem("message", res.data.message);
+        history.push("/admin");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -107,9 +107,9 @@ const MainEdit = () => {
               <Form.Dropdown
                 placeholder="Items"
                 fluid
-                onChange={(e, data) =>{
+                onChange={(e, data) => {
                   setDetailsId(data.value);
-                  id=data.value;
+                  id = data.value;
                 }}
                 selection
                 options={items}
@@ -117,9 +117,19 @@ const MainEdit = () => {
             </Form.Input>
             {detailsId && (
               <div>
-                <Form.Input label="Quantity" onChange={e=>setQuantity(e.target.value)} />
-                <Form.Input label="Cost" icon="rupee" onChange={e=>setCost(e.target.value)} />
-                <Form.Input label="Aisle Number" onChange={e=>setAisle(e.target.value)}/>
+                <Form.Input
+                  label="Quantity"
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+                <Form.Input
+                  label="Cost"
+                  icon="rupee"
+                  onChange={(e) => setCost(e.target.value)}
+                />
+                <Form.Input
+                  label="Aisle Number"
+                  onChange={(e) => setAisle(e.target.value)}
+                />
                 <Button>Submit</Button>
               </div>
             )}

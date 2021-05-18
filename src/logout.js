@@ -10,10 +10,6 @@ const Logout = () => {
     fetch("http://localhost:8000/api/logout")
       .then((res) => {
         history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        history.push("/admin");
       });
   }, []);
   return (<div></div>);
