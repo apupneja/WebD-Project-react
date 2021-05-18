@@ -97,6 +97,9 @@ ul{
 .link:hover{
   color: rgb(255, 123, 0);
 }
+.link:active{
+  color:blue;
+}
 
 .link3{
   position: absolute;

@@ -41,6 +41,7 @@ ReactDOM.render(
         <Logout />
       </Route>
       <Route path='/download'>
+        <Navbar />
         <Download />
       </Route>
       <Route component={Error} />
