@@ -10,7 +10,7 @@ import {Icon} from 'semantic-ui-react';
 const Navbar = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1144px)' })
   const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-device-width: 1145px)'
+    query: '(min-width: 1145px)'
   })
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
