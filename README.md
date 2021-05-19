@@ -24,6 +24,6 @@ module.exports= {
 
 ## Credits
 * [Ananth Raghav](https://github.com/ananth243/) (Backend)
-* [Anirudh Pupneja](https://github.com/ananth243/apupneja) (Frontend)
-* [Omkar Kulkarni](https://github.com/ananth243/oak2905) (Frontend)
+* [Anirudh Pupneja](https://github.com/ananth243/apupneja/) (Frontend)
+* [Omkar Kulkarni](https://github.com/ananth243/oak2905/) (Frontend)
 
