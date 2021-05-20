@@ -59,6 +59,8 @@ const Login = () => {
 
               <div className="header">LOG-IN</div>
               <br></br>
+              <h2 style={{fontSize:"14px",color:"red"}}>{nameError}</h2>
+              <h2 style={{fontSize:"14px",color:"red"}}>{passwordError}</h2>
               <br></br>
               <Form.Input
                 fluid
@@ -69,7 +71,7 @@ const Login = () => {
                 placeholder="Name"
                 onChange={(e) => setName(e.target.value)}
               />
-              <h2 style={{fontSize:"14px",color:"red"}}>{nameError}</h2>
+              
               <Form.Input
                 fluid
                 icon="lock"
@@ -79,7 +81,7 @@ const Login = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <h2 style={{fontSize:"14px",color:"red"}}>{passwordError}</h2>
+              
               <br></br>
               <Button animated>
                 <Button.Content visible>Submit</Button.Content>

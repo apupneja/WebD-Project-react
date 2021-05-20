@@ -21,6 +21,31 @@ const MainSignup = () => {
     e.preventDefault();
     setNameError("");
     setPasswordError("");
+    if(name===""){
+      setNameError("Please enter a username");
+      setTimeout(()=>{
+        setNameError("");
+      },4000)
+    }
+    else if(name.length<5){
+      setNameError("Username should have a minimum length of 5 characters");
+      setTimeout(()=>{
+        setNameError("");
+      },4000)
+    }
+    else if(password===""){
+      setPasswordError("Please enter a password");
+      setTimeout(()=>{
+        setPasswordError("");
+      },4000)
+    }
+    else if(password.length<5){
+      setPasswordError("Password length should be of minimum 5 characters");
+      setTimeout(()=>{
+        setPasswordError("");
+      },4000)
+    }
+    else{
     axios
       .post("http://localhost:8000/api/signup", {
         data: {
@@ -45,7 +70,8 @@ const MainSignup = () => {
           setPasswordError(err.response.data.errors.password);
         }
       });
-  };
+    }
+  }
   return (
     <div className="edit">
       <Form onSubmit={handleClick}>

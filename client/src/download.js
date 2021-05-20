@@ -37,12 +37,6 @@ const Download = () => {
     return ( 
       <Container>
         <div>
-            <Button as='a' href='./admin' animated color='red' floated='left'>
-            <Button.Content visible>Back</Button.Content>
-                    <Button.Content hidden>
-                      <Icon name='angle left' />
-                    </Button.Content>
-            </Button>
             <ReactToPrint
                 trigger={() =>
                      <Button animated color='red' floated='right'>

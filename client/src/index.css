@@ -17,7 +17,7 @@ code {
 }
 
 .navbar{
-  background-color: #970704;
+  background-color: #285BFF;
   width: 100%;
   padding: 1.5%;
   text-align: left;
@@ -95,7 +95,7 @@ ul{
   align-self: center;
 }
 .link:hover{
-  color: rgb(255, 123, 0);
+  color: #cbd4db;
 }
 .link:active{
   color:blue;
