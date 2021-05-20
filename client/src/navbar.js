@@ -20,7 +20,7 @@ const Navbar = () => {
       <div>
         
         <nav className="navbar">
-        <Icon inverted name='bars' onClick={showSidebar}/>
+        <Icon inverted name={sidebar?'close':'bars'} onClick={showSidebar}/>
           {sidebar && (
               <div className="name">
                 <Link to="./admin" className="link" >INVENTORY</Link>
@@ -39,7 +39,7 @@ const Navbar = () => {
       {isDesktopOrLaptop && (
       <div>
         <nav className="navbar">
-        <Icon inverted name='bars' onClick={showSidebar}/>
+        <Icon inverted name={sidebar?'close':'bars'} onClick={showSidebar}/>
         {sidebar && (
             <div className="name">
                 <Link to="./admin" className="link" >INVENTORY</Link>
