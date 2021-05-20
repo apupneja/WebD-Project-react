@@ -13,7 +13,6 @@ This is a tool created to facilitate inventory management in a store or a wareho
 ```
 module.exports= {
       dbURI:"mongodb connection link",
-      salt: A number or string,
       secret: "Your secret"
 }
 ```
