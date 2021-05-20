@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a tool created to facilitate inventory management in a store or a warehouse with an added functionality to print out the inventory, authentication, creating new users that have the access to the website, adding/removing items from the inventory. This project was made as a part of DEVSOC projects for the Web-development vertical. The project was built using the MERN( Mongoose, Express, Node JS, and React JS) stack and semantic-UI react.
+This is a tool created to facilitate inventory management in a store or a warehouse with an added functionality to print out the inventory, authentication, creating new users that have the access to the website, adding/removing items from the inventory. This project was made as a part of DEVSOC projects for the Web-development vertical. The project was built using the MERN( Mongoose, Express, Node JS, and React JS) stack and semantic-UI react. The link is available [here](https://webd-crew-inventory.herokuapp.com)
 
 <br />
 
