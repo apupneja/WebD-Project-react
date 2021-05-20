@@ -7,17 +7,16 @@ This is a tool created to facilitate inventory management in a store or a wareho
 <br />
 
 ## Setting up development environment
-* Clone this repository for the frontend.
-* Clone [this](https://github.com/ananth243/WebD-Crew-project) repository for the backend for this project.
-* Add a file keys.js in config folder with the following format to both the repositories.
+* Clone this repository
+* Add a file keys.js in a config folder in the server folder with the following format
 ```
 module.exports= {
       dbURI:"mongodb connection link",
       secret: "Your secret"
 }
 ```
-* Run **npm install** in your terminal after changing directory to the **Web-D-Project-react** repository and then **npm start**.
-* Run **nodemon app** in your terminal after changing directory to the **[Web-D-Crew-project](https://github.com/ananth243/WebD-Crew-project)**.
+* Run **npm install** in your terminal after changing directory to the **client** folder and then **npm start**.
+* Run **npm install** in your terminal after changing directory to the **server** folder and then **npm start**.
 
 <br />
 

@@ -1,0 +1,36 @@
+{
+  "name": "webd-crew-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon app",
+    "client": "cd client && npm dev",
+    "dev": "concurrently \"npm run dev\"  \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ananth243/WebD-Crew-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ananth243/WebD-Crew-project/issues"
+  },
+  "homepage": "https://github.com/ananth243/WebD-Crew-project#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.1.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.4.0",
+    "mongoose": "^5.12.7",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "pdf": "^0.1.0",
+    "pdfshift": "^2.0.1"
+  }
+}
