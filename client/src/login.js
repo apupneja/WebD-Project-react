@@ -34,7 +34,6 @@ const Login = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.jwt)
         localStorage.setItem("jwt", res.data.jwt);
         history.push("/admin");
       })

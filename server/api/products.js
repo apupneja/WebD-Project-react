@@ -25,10 +25,12 @@ router.use(async (req, res, next) => {
 });
 
 const Errors = (err) => {
-  let errors = { cost: "", quantity: "", aisle: "" };
-  Object.values(err.errors).forEach(({ properties }) => {
-    errors[properties.path] = properties.message;
-  });
+  let errors = {cost: "", quantity:"",aisle:""};
+  if (err._message.includes("inventorie validation failed")){
+    Object.values(err.errors).forEach(property=>{
+     errors[property.path]="Please enter a valid "+property.kind;
+    })
+  };
   return errors;
 };
 
@@ -61,7 +63,8 @@ router.patch("/edit/:ID/:id", async (req, res) => {
     if(err.message === "Invalid credentials"){
       res.status(401).json({message: err.message});
     } else{
-      res.status(400).json({errors});
+      console.log(errors)
+      res.status(422).json({errors});
     }
   }
 });

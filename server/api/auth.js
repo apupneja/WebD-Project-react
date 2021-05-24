@@ -75,7 +75,6 @@ router.post("/login", async (req, res) => {
 router.post("/signup", async (req, res) => {
   try {
     await authCheck(req.body.data.cookie);
-    const hash = await bcrypt.hash(req.body.data.password, salt);
     const user = await new User({
       name: req.body.data.name,
       password: req.body.data.password,
@@ -85,6 +84,7 @@ router.post("/signup", async (req, res) => {
       message: `New user with username ${js.name} has been created`,
     });
   } catch (err) {
+    console.log(err);
     if (err.message === "Invalid credentials") {
       res.status(401).json({ message: err.message });
     } else {

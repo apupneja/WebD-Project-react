@@ -27,12 +27,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, "build")));
 
-//CORS
-//You won't face any errors after running the build so you can remove this
-//Also the cookie is recorded in browser so instead of setting the jwt to the localstorage it is set as a cookie
-//Access it from backend, for now pass it as data
+// CORS
+// You won't face any errors after running the build so you can remove this
+// Also the cookie is recorded in browser so instead of setting the jwt to the localstorage it is set as a cookie
+// Access it from backend, for now pass it as data
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"

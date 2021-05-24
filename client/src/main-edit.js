@@ -18,8 +18,12 @@ const MainEdit = () => {
   const [quantity, setQuantity] = useState("");
   const [cost, setCost] = useState("");
   const [aisle, setAisle] = useState("");
+  const [aisleError, setAisleError]= useState("");
+  const [costError, setCostError]= useState("");
+  const [quantityError, setQuantityError]= useState("");
 
   useEffect(() => {
+    categoryOptions=[];
     axios
       .post("http://localhost:8000/api/inventory", {
         data: {
@@ -66,6 +70,7 @@ const MainEdit = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    setCostError("");setAisleError("");setQuantityError("");
     axios
       .patch(`http://localhost:8000/api/edit/${ID}/${id}`, {
         data: {
@@ -85,7 +90,14 @@ const MainEdit = () => {
         history.push("/admin");
       })
       .catch((err) => {
-        console.log(err);
+        if(err.message==="Invalid credentials"){
+          history.push("/");
+        }
+        else{
+          setCostError(err.response.data.errors.cost);
+          setQuantityError(err.response.data.errors.quantity);
+          setAisleError(err.response.data.errors.aisle);
+        }
       });
   };
 
@@ -119,23 +131,26 @@ const MainEdit = () => {
               <div>
                 <Form.Input
                 required
-                type="number"  
+                // type="number"  
                 label="Quantity"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
+                <h3 style={{ fontSize: "14px", color: "red" }}>{quantityError}</h3>
                 <Form.Input
                 required
                   label="Cost"
-                  type="number"
+                  // type="number"
                   icon="rupee"
                   onChange={(e) => setCost(e.target.value)}
                 />
+                <h3 style={{ fontSize: "14px", color: "red" }}>{costError}</h3>
                 <Form.Input
                   label="Aisle Number"
                   required
-                  type="number"
+                  // type="number"
                   onChange={(e) => setAisle(e.target.value)}
                 />
+                <h3 style={{ fontSize: "14px", color: "red" }}>{aisleError}</h3>
                 <Button>Submit</Button>
               </div>
             )}

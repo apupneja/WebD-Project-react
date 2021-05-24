@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+function isNumber(val){
+  return !isNaN(val)
+}
+
 const detailSchema = new Schema({
   name: {
     type: String,
@@ -9,14 +13,17 @@ const detailSchema = new Schema({
   cost: {
     type: Number,
     required: [true, "This is a required field !"],
+    validate:[isNumber, "Please enter a valid number"]
   },
   quantity: {
     type: Number,
     required: [true, "This is a required field !"],
+    validate:[isNumber, "Please enter a valid number"]
   },
   aisle: {
     type: Number,
     required: [true, "This is a required field !"],
+    validate:[isNumber, "Please enter a valid number"]
   },
 });
 
