@@ -16,25 +16,35 @@ async function authCheck(token) {
 
 router.use(async (req, res, next) => {
   try {
-    const token = req.body.data.cookie;
+    let token;
+    if (
+      req.method === "PATCH" ||
+      req.method === "POST" ||
+      req.method === "DELETE"
+    ) {
+    token = req.body.headers.Authorization;
+    } else {
+      token = req.headers["authorization"];
+    }
     await authCheck(token);
     next();
   } catch (err) {
+    console.log(err)
     res.status(401).json({ message: err.message });
   }
 });
 
 const Errors = (err) => {
-  let errors = {cost: "", quantity:"",aisle:""};
-  if (err._message.includes("inventorie validation failed")){
-    Object.values(err.errors).forEach(property=>{
-     errors[property.path]="Please enter a valid "+property.kind;
-    })
-  };
+  let errors = { cost: "", quantity: "", aisle: "" };
+  if (err._message.includes("inventorie validation failed")) {
+    Object.values(err.errors).forEach((property) => {
+      errors[property.path] = "Please enter a valid " + property.kind;
+    });
+  }
   return errors;
 };
 
-router.post("/inventory", async (req, res) => {
+router.get("/inventory", async (req, res) => {
   try {
     const data = await Inventory.findOne();
     res.status(200).json({
@@ -60,12 +70,8 @@ router.patch("/edit/:ID/:id", async (req, res) => {
     res.status(200).json({ message: "Products updated successfully" });
   } catch (err) {
     const errors = Errors(err);
-    if(err.message === "Invalid credentials"){
-      res.status(401).json({message: err.message});
-    } else{
-      console.log(errors)
-      res.status(422).json({errors});
-    }
+    console.log(err);
+    res.status(422).json({ errors });
   }
 });
 

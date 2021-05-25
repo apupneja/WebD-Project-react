@@ -7,6 +7,7 @@ const path = require("path");
 const { dbURI } = require("./config/keys");
 const apiRoutes = require("./api/auth");
 const productRoutes = require("./api/products");
+const { dirname } = require("path");
 
 
 const app = express();
@@ -25,7 +26,6 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, "build")));
 
 // CORS
 // You won't face any errors after running the build so you can remove this
@@ -46,10 +46,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
 
 app.use("/api", apiRoutes);
 app.use("/api", productRoutes);

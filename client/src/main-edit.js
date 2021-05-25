@@ -25,12 +25,10 @@ const MainEdit = () => {
   useEffect(() => {
     categoryOptions=[];
     axios
-      .post("http://localhost:8000/api/inventory", {
-        data: {
-          cookie: localStorage.getItem("jwt"),
-        },
+      .get("http://localhost:8000/api/inventory", {
         headers: {
           "Content-Type": "application/json",
+            "Authorization": `${localStorage.getItem("jwt")}`,
         },
       })
       .then((res) => {
@@ -74,7 +72,6 @@ const MainEdit = () => {
     axios
       .patch(`http://localhost:8000/api/edit/${ID}/${id}`, {
         data: {
-          cookie: localStorage.getItem("jwt"),
           items: {
             quantity,
             cost,
@@ -83,6 +80,7 @@ const MainEdit = () => {
         },
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `${localStorage.getItem("jwt")}`
         },
       })
       .then((res) => {

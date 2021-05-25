@@ -16,13 +16,6 @@ const Login = () => {
     setPasswordError("");
     setNameError("");
     e.preventDefault();
-    if (name === "") {
-      setNameError("Please enter your name");
-    }
-    else if (password === "") {
-      setPasswordError("Please enter your password");
-    }
-    else{
       axios
       .post("http://localhost:8000/api/login", {
         data: {
@@ -41,7 +34,6 @@ const Login = () => {
         setNameError(err.response.data.errors.name);
         setPasswordError(err.response.data.errors.password);
       });
-    }
   };
 
   return (

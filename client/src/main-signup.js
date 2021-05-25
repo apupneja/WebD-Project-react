@@ -25,11 +25,11 @@ const MainSignup = () => {
       .post("http://localhost:8000/api/signup", {
         data: {
           name: name,
-          password: password,
-          cookie: localStorage.getItem("jwt"),
+          password: password
         },
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `${localStorage.getItem("jwt")}`
         },
       })
       .then((res) => {
@@ -51,17 +51,16 @@ const MainSignup = () => {
       <Form onSubmit={handleClick}>
         <Form.Field>
           <label style={{ fontSize: "16px" }}>New Username</label>
-          <h3 style={{ fontSize: "14px", color: "red" }}>{nameError}</h3>
           <input
             onChange={(e) => setName(e.target.value)}
             type="text"
             placeholder="Name of the new user"
             name="name"
           />
+          <h3 style={{ fontSize: "14px", color: "red" }}>{nameError}</h3>
         </Form.Field>
         <Form.Field>
           <label style={{ fontSize: "16px" }}>Password</label>
-          <h3 style={{ fontSize: "14px", color: "red" }}>{passwordError}</h3>
           <input
             onChange={(e) => setPassword(e.target.value)}
             type="password"
@@ -69,6 +68,7 @@ const MainSignup = () => {
             name="password"
           />
         </Form.Field>
+        <h3 style={{ fontSize: "14px", color: "red" }}>{passwordError}</h3>
         <Form.Field>
           <Checkbox
             label="I want to create this new user"
@@ -76,7 +76,7 @@ const MainSignup = () => {
             onChange={Checked}
           />
         </Form.Field>
-        {check && <Button type="submit">Submit</Button>}
+        {check && <Button  className="submit"  type="submit">Submit</Button>}
       </Form>
     </div>
   );

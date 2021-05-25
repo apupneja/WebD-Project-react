@@ -58,7 +58,6 @@ router.post("/login", async (req, res) => {
       );
       if (auth) {
         const token = createToken(result._id, result.name);
-        res.cookie("jwt", token, { httpOnly: true, maxAge: max * 1000 });
         res.status(200).json({ jwt: token });
       } else {
         throw Error("Invalid password");
@@ -74,7 +73,8 @@ router.post("/login", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   try {
-    await authCheck(req.body.data.cookie);
+    console.log(req.body)
+    await authCheck(req.body.headers.Authorization);
     const user = await new User({
       name: req.body.data.name,
       password: req.body.data.password,
@@ -95,7 +95,6 @@ router.post("/signup", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  res.cookie("jwt", "", { maxAge: 1 });
   res.status(200).json({});
 });
 
