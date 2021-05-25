@@ -33,6 +33,18 @@ ReactDOM.render(
         <Navbar />
         <MainEdit />
       </Route>
+      <Route path='/delcat'>
+        <Navbar />
+        <MainDelcat />
+      </Route>
+      <Route path='/delprod'>
+        <Navbar />
+        <MainDelprod />
+      </Route>
+      <Route path='/addcat'>
+        <Navbar />
+        <MainAddCat />
+      </Route>
       <Route path='/signup'>
         <Navbar />
         <MainSignup />
