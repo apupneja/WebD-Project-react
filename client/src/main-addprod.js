@@ -137,9 +137,6 @@ const MainAddProd = () => {
             />
           </div>
         )}
-        <h2>
-          {productId},{JSON.stringify(newProd)}
-        </h2>
         <Button>Submit</Button>
       </Form>
     </div>

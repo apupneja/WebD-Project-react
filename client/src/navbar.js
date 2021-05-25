@@ -16,7 +16,7 @@ const Navbar = () => {
   const showSidebar = () => setSidebar(!sidebar);
     return ( 
       <div>
-      {/* {isTabletOrMobile && (
+      {isTabletOrMobile && (
       <div>
         
         <nav className="navbar">
@@ -27,6 +27,14 @@ const Navbar = () => {
                 <br></br>
                 <Link to="./edit" className="link" >EDIT INVENTORY</Link>
                 <br></br>
+                <Link to="./delcat" className="link">DELETE CATEGORY</Link>
+                <br></br>
+                <Link to="./delprod" className="link">DELETE PRODUCT</Link>
+                <br></br>
+                <Link to="./addcat" className="link">ADD CATEGORY</Link>
+                <br></br>
+                <Link to="./addprod" className="link" >ADD PRODUCT</Link>
+                <br></br>
                 <Link to="./signup" className="link" >CREATE NEW ADMIN</Link>
                 <br></br>
                 <Link to="./download" className="link">DOWNLOAD INVENTORY</Link>
@@ -34,19 +42,35 @@ const Navbar = () => {
                 <Link to="./logout" className="link">LOGOUT</Link>
             </div>)}
         </nav>
-      </div> */}
-      {/* )} */}
+      </div>
+      )}
+      {isDesktopOrLaptop && (
       <div>
         <nav className="navbar">
+        <Icon inverted name={sidebar?'close':'bars'} onClick={showSidebar}/>
+        {sidebar && (
             <div className="name">
                 <Link to="./admin" className="link" >INVENTORY</Link>
+                <br></br>
                 <Link to="./edit" className="link" >EDIT INVENTORY</Link>
+                <br></br>
+                <Link to="./delcat" className="link">DELETE CATEGORY</Link>
+                <br></br>
+                <Link to="./delprod" className="link">DELETE PRODUCT</Link>
+                <br></br>
+                <Link to="./addcat" className="link">ADD CATEGORY</Link>
+                <br></br>
+                <Link to="./addprod" className="link" >ADD PRODUCT</Link>
+                <br></br>
                 <Link to="./signup" className="link" >CREATE NEW ADMIN</Link>
+                <br></br>
                 <Link to="./download" className="link">DOWNLOAD INVENTORY</Link>
+                <br></br>
                 <Link to="./logout" className="link">LOGOUT</Link>
-            </div>
+            </div>)}
         </nav>
       </div>
+      )}
       </div>
      );
 }

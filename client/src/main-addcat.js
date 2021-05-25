@@ -119,7 +119,6 @@ setNameCat({
          type='number'
          onChange={(e) => {handleAisle(e)}}
       />
-      <h3>{JSON.stringify(newCat)}</h3>
     <Button>Submit</Button>
     </Form>
       
