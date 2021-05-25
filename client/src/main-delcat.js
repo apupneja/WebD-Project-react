@@ -45,7 +45,6 @@ const MainDelcat = () => {
       .delete(`http://localhost:8000/api/delete/${ID}`, {
         data: {
           cookie: localStorage.getItem("jwt"),
-          
         },
         headers: {
           "Content-Type": "application/json",

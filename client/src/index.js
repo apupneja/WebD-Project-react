@@ -15,6 +15,11 @@ import {
 import 'semantic-ui-css/semantic.min.css'
 import Logout from './logout';
 import Download from './download';
+import MainDelcat from './main-delcat'
+import MainDelprod from './main-delprod'
+import MainAddCat from './main-addcat'
+import MainAddProd from './main-addprod'
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -40,6 +45,10 @@ ReactDOM.render(
       <Route path='/addcat'>
         <Navbar />
         <MainAddCat />
+      </Route>
+      <Route path='/addprod'>
+        <Navbar />
+        <MainAddProd />
       </Route>
       <Route path='/signup'>
         <Navbar />

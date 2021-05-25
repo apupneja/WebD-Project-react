@@ -33,6 +33,8 @@ const Navbar = () => {
                 <br></br>
                 <Link to="./addcat" className="link">ADD CATEGORY</Link>
                 <br></br>
+                <Link to="./addprod" className="link" >ADD PRODUCT</Link>
+                <br></br>
                 <Link to="./signup" className="link" >CREATE NEW ADMIN</Link>
                 <br></br>
                 <Link to="./download" className="link">DOWNLOAD INVENTORY</Link>
@@ -57,6 +59,8 @@ const Navbar = () => {
                 <Link to="./delprod" className="link">DELETE PRODUCT</Link>
                 <br></br>
                 <Link to="./addcat" className="link">ADD CATEGORY</Link>
+                <br></br>
+                <Link to="./addprod" className="link" >ADD PRODUCT</Link>
                 <br></br>
                 <Link to="./signup" className="link" >CREATE NEW ADMIN</Link>
                 <br></br>

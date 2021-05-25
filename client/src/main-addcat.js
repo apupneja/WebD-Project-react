@@ -8,10 +8,6 @@ import React from "react";
 
 const MainAddCat = () => {
   const history = useHistory();
-  const [catcheck, setCatCheck]= useState(false);
-  const [productcheck, setProductCheck]= useState(false);
-  const [costcheck, setCostCheck]= useState(false);
-  const [quantitycheck, setQuantityCheck]= useState(false);
   const [newCat, setNameCat] = useState({
     product: "",
     details:[
@@ -26,7 +22,6 @@ const MainAddCat = () => {
   
   
   const handleCat = (e) => {
-    setCatCheck(!catcheck);
     setNameCat({ 
         ...newCat,
         product: e.target.value,
@@ -36,7 +31,6 @@ const MainAddCat = () => {
     })
   }
   const handleProd = (e) => {
-      setProductCheck(!productcheck);
       setNameCat({ 
         ...newCat,
         details: {
@@ -46,7 +40,6 @@ const MainAddCat = () => {
     });
   }
   const handleCost = (e) => {
-    setCostCheck(!costcheck);
     setNameCat({ 
       ...newCat,
       details: {
@@ -56,7 +49,6 @@ const MainAddCat = () => {
   });
 }
 const handleQuantity = (e) => {
-    setQuantityCheck(!quantitycheck);
     setNameCat({ 
       ...newCat,
       details: {
@@ -65,7 +57,16 @@ const handleQuantity = (e) => {
       }
   });
 }
-  
+const handleAisle = (e) => {
+    
+  setNameCat({ 
+    ...newCat,
+    details: {
+        ...newCat.details, 
+        aisle: e.target.value
+    }
+});
+}
   const handleClick = (e) => {
     e.preventDefault();
     
@@ -117,13 +118,7 @@ const handleQuantity = (e) => {
          label="Aisle number:"
          required
          type='number'
-         onChange={(e) => setNameCat({ 
-            ...newCat,
-            details: {
-                ...newCat.details, 
-                aisle: e.target.value
-            }
-         })}
+         onChange={(e) => {handleAisle}}
       />
 
     <Button>Submit</Button>
