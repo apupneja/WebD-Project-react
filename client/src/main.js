@@ -17,7 +17,7 @@ const slice = (id) => {
 let datalist=[];
  
 const Main = () => {
-    const column=["details"];
+  const column=["details","_id"];
   const [data, setData]=useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const history = useHistory();
@@ -51,13 +51,13 @@ const Main = () => {
   }
  
   function Filterdata(value){
-    const lcValue = value.toLowerCase().trim();
-    if(lcValue===""){
+    const lcValue = value.toLowerCase();
+    if(lcValue===" "){
         setData(datalist);
     }
     else{
         const filteredData= datalist.filter(item=>{
-            return Object.keys(item).some(key=>column.includes(key)?false: item[key].toString().toLowerCase().includes(lcValue))
+            return Object.keys(item).some(key=>column.includes(key)?false: item[key].toLowerCase().includes(lcValue))
         })
         setData(filteredData)
     }
