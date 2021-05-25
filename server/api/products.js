@@ -19,8 +19,7 @@ router.use(async (req, res, next) => {
     let token;
     if (
       req.method === "PATCH" ||
-      req.method === "POST" ||
-      req.method === "DELETE"
+      req.method === "POST" 
     ) {
     token = req.body.headers.Authorization;
     } else {
@@ -80,33 +79,8 @@ router.patch("/add", async (req, res) => {
   try {
     const result = await Inventory.findOneAndUpdate();
     result.inventory.push(req.body.data.new);
-    /*new:
-      {
-      product: "Facial",
-      details:[
-        {
-          name:"Perfume",
-          cost: 150,
-          quantity: 500,
-          aisle: 9
-        },
-        {
-          name:"Skin cream",
-          cost: 200,
-          quantity: 650,
-          aisle: 9
-        },
-        {
-          name:"Lipstick",
-          cost: 150,
-          quantity: 1000,
-          aisle: 9
-        }
-      ]
-    }
-       */
-    result.save();
-    res.status(200).json({ message: "Hi" });
+    await result.save();
+    res.status(200).json({ message: "Product added successfully to inventory" });
   } catch (err) {
     console.log(err);
   }
@@ -118,16 +92,8 @@ router.patch("/add/:ID", async (req, res) => {
     const result = await Inventory.findOneAndUpdate();
     const doc = result.inventory.id(ID);
     doc.details.push(req.body.data.new);
-    /*new:
-      {
-      name: "Papaya",
-      cost: 48,
-      quantity: 377,
-      aisle: 4,
-    }
-       */
-    result.save();
-    res.status(200).json({ message: "Hi" });
+    await result.save();
+    res.status(200).json({ message: "Product added successfully" });
   } catch (err) {
     console.log(err);
   }
@@ -139,8 +105,8 @@ router.delete("/delete/:ID", async (req, res) => {
     const ID = req.params.ID;
     const result = await Inventory.findOneAndUpdate();
     result.inventory.id(ID).remove();
-    result.save();
-    res.status(200).json({ message: "Hi" });
+    await result.save();
+    res.status(200).json({ message: "Product deleted successfuly" });
   } catch (err) {
     console.log(err);
   }
@@ -151,10 +117,9 @@ router.delete("/delete/:ID/:id", async (req, res) => {
     const ID = req.params.ID;
     const id = req.params.id;
     const result = await Inventory.findOneAndUpdate();
-    const doc = result.inventory.id(ID);
-    const subdoc = doc.details.id(id).remove();
-    result.save();
-    res.status(200).json({ message: "Hi" });
+     result.inventory.id(ID).details.id(id).remove();
+    await result.save();
+    res.status(200).json({ message: "Product deleted successfuly" });
   } catch (err) {
     console.log(err);
   }
