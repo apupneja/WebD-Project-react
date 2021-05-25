@@ -16,7 +16,7 @@ const Navbar = () => {
   const showSidebar = () => setSidebar(!sidebar);
     return ( 
       <div>
-      {isTabletOrMobile && (
+      {/* {isTabletOrMobile && (
       <div>
         
         <nav className="navbar">
@@ -34,23 +34,19 @@ const Navbar = () => {
                 <Link to="./logout" className="link">LOGOUT</Link>
             </div>)}
         </nav>
-      </div>
-      )}
-      {isDesktopOrLaptop && (
+      </div> */}
+      {/* )} */}
       <div>
         <nav className="navbar">
-        <Icon inverted name={sidebar?'close':'bars'} onClick={showSidebar}/>
-        {sidebar && (
             <div className="name">
                 <Link to="./admin" className="link" >INVENTORY</Link>
                 <Link to="./edit" className="link" >EDIT INVENTORY</Link>
                 <Link to="./signup" className="link" >CREATE NEW ADMIN</Link>
                 <Link to="./download" className="link">DOWNLOAD INVENTORY</Link>
                 <Link to="./logout" className="link">LOGOUT</Link>
-            </div>)}
+            </div>
         </nav>
       </div>
-      )}
       </div>
      );
 }
