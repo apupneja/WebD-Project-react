@@ -21,13 +21,12 @@ const Download = () => {
    
 
     useEffect(() => {
-    axios.post("http://localhost:8000/api/inventory", {
-        data: {
-            cookie: localStorage.getItem("jwt")
-          },
-          headers: {
-            "Content-Type": "application/json"
-          },
+      axios
+      .get("http://localhost:8000/api/inventory", {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("jwt")
+        },
     }).then(res=>{
             setInventory(res.data.inventory);
     }).catch(err=>{
