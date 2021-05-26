@@ -114,7 +114,7 @@ ul{
 }
 
 .edit{
-  margin:20%;
+  margin:5vmax 20% 20% 20%;
 
 }
 @media print{
