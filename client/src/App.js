@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import Main from "./main";
 import Error from "./error";
 import Login from "./login";
@@ -17,10 +16,6 @@ import MainDelcat from "./main-delcat";
 import './index.css';
 
 function App() {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1144px)" });
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-width: 1145px)",
-  });
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 

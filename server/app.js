@@ -26,6 +26,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.static("build"));
 
 // CORS
 // You won't face any errors after running the build so you can remove this
@@ -49,6 +50,10 @@ app.use((req, res, next) => {
 
 app.use("/api", apiRoutes);
 app.use("/api", productRoutes);
+
+// app.use("*", (req, res)=>{
+//   res.sendFile(__dirname, "build", "index.html");
+// })
 
 app.use((req, res) => {
   res.status(404).send("Wrong url");

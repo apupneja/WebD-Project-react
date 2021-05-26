@@ -82,7 +82,8 @@ router.patch("/add", async (req, res) => {
     await result.save();
     res.status(200).json({ message: "Product added successfully to inventory" });
   } catch (err) {
-    console.log(err);
+    const errors = Errors(err);
+    res.status(401).json({errors});
   }
 });
 
@@ -95,7 +96,8 @@ router.patch("/add/:ID", async (req, res) => {
     await result.save();
     res.status(200).json({ message: "Product added successfully" });
   } catch (err) {
-    console.log(err);
+    const errors = Errors(err);
+    res.status(401).json({errors});
   }
 });
 
