@@ -26,7 +26,7 @@ const MainEdit = () => {
   useEffect(() => {
     categoryOptions=[];
     axios
-      .get("/api/inventory", {
+      .get("http://localhost:8000/api/inventory", {
         headers: {
           "Content-Type": "application/json",
             "Authorization": `${localStorage.getItem("jwt")}`,
@@ -71,7 +71,7 @@ const MainEdit = () => {
     e.preventDefault();
     setCostError("");setAisleError("");setQuantityError("");
     axios
-      .patch(`/api/edit/${ID}/${id}`, {
+      .patch(`http://localhost:8000/api/edit/${ID}/${id}`, {
         data: {
           items: {
             quantity,

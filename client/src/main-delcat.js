@@ -15,7 +15,7 @@ const MainDelcat = () => {
   useEffect(() => {
     categoryOptions=[];
     axios
-      .get("/api/inventory", {
+      .get("http://localhost:8000/api/inventory", {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem("jwt"),
@@ -41,7 +41,7 @@ const MainDelcat = () => {
     e.preventDefault();
     ID=productId;
     axios
-      .delete(`/api/delete/${ID}`, {
+      .delete(`http://localhost:8000/api/delete/${ID}`, {
         headers: {
           "Authorization": localStorage.getItem("jwt"),
           "Content-Type": "application/json",
