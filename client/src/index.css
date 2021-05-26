@@ -46,7 +46,7 @@ ul{
   font-weight: 1000;
 }
 .product{
-  background-color: rgba(165, 162, 162, 0.37);
+  background-color: rgba(86, 163, 252, 0.253);
   padding: 1%;
   /* margin: 1%; */
   display: grid;
@@ -118,4 +118,47 @@ ul{
 }
 @media print{
   @page{margin : 10px;};
+}
+
+.searchInputWrapper {
+  position: relative;
+  
+}
+
+.searchInput {
+  width: 20rem;
+  height: 2rem;
+  padding: 0 1rem; 
+  border-radius: 2rem;
+  border: none;
+  background-color: rgba(86, 163, 252, 0.253);
+  transition: transform 0.1s ease-in-out;
+}
+
+::placeholder {
+  color: #a1a1a1;
+}
+
+/* hide the placeholder text on focus */
+:focus::placeholder {
+  text-indent: -999px
+}
+
+.searchInput:focus {
+  outline: none;
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
+
+.searchInputIcon {
+  position:relative;
+  z-index: 1000;
+  left: -2.5rem;
+  top: 0.10rem;
+  color: #a1a1a1;
+  transition: all 0.1s ease-in-out;
+}
+
+.searchInputWrapper > .searchInputIcon {
+  right: 0.2rem;
 }

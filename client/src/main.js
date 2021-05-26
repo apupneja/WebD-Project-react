@@ -2,6 +2,7 @@ import Component from "./component";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
+import { Icon } from 'semantic-ui-react'
  
 // import ComponentToPrint from './ComponentToPrint';
  
@@ -69,18 +70,22 @@ const Main = () => {
         <span className="headingText">Database</span>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <br></br>
-        <div className="search">
-          <input
-            type="text"
-            value={searchTerm}
-            placeholder="search"
-            onChange={(e) => {
-              Filter(e);
-            }}
-          ></input>
-          {data.length === 0 && <span>No records found to display!</span>}
-        </div>
-        <h1>{searchTerm}</h1>
+        <br></br>
+        <br></br>
+          <div className="searchInputWrapper">
+            
+            <input
+              className="searchInput"
+              type="text"
+              value={searchTerm}
+              placeholder="search categories"
+              onChange={(e) => {
+                Filter(e);
+              }} 
+            ></input>
+            <Icon className="searchInputIcon" name='search'/>
+            {data.length === 0 && <span>No records found to display!</span>}
+          </div>
         <div>
           <div className="filter">
             {data.map((product) => (
