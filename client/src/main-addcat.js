@@ -72,7 +72,7 @@ setNameCat({
     e.preventDefault();
     
     axios
-      .patch(`http://localhost:8000/api/add`, {
+      .patch(`/api/add`, {
         data: {
           new: newCat
         },

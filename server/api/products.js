@@ -28,7 +28,6 @@ router.use(async (req, res, next) => {
     await authCheck(token);
     next();
   } catch (err) {
-    console.log(err)
     res.status(401).json({ message: err.message });
   }
 });

@@ -17,7 +17,7 @@ const Login = () => {
     setNameError("");
     e.preventDefault();
       axios
-      .post("http://localhost:8000/api/login", {
+      .post("/api/login", {
         data: {
           name: name,
           password: password,

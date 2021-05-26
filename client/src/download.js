@@ -22,7 +22,7 @@ const Download = () => {
 
     useEffect(() => {
       axios
-      .get("http://localhost:8000/api/inventory", {
+      .get("/api/inventory", {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem("jwt")

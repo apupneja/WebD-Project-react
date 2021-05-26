@@ -22,7 +22,7 @@ const MainAddProd = () => {
   useEffect(() => {
     categoryOptions = [];
     axios
-      .get("http://localhost:8000/api/inventory", {
+      .get("/api/inventory", {
         headers: {
           Authorization: localStorage.getItem("jwt"),
           "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const MainAddProd = () => {
     e.preventDefault();
     ID = productId;
     axios
-      .patch(`http://localhost:8000/api/add/${ID}`, {
+      .patch(`/api/add/${ID}`, {
         data: {
           new: newProd,
         },

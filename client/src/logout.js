@@ -7,7 +7,7 @@ const Logout = () => {
   const history = useHistory();
   useEffect(() => {
     localStorage.removeItem("jwt");
-    fetch("http://localhost:8000/api/logout")
+    fetch("/api/logout")
       .then((res) => {
         history.push("/");
       });

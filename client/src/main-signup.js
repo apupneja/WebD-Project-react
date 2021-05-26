@@ -22,7 +22,7 @@ const MainSignup = () => {
     setNameError("");
     setPasswordError("");
     axios
-      .post("http://localhost:8000/api/signup", {
+      .post("/api/signup", {
         data: {
           name: name,
           password: password

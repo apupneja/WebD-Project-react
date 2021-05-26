@@ -26,7 +26,7 @@ const Main = () => {
  
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/inventory", {
+      .get("/api/inventory", {
         headers: {
           "Authorization": localStorage.getItem("jwt"),
           "Content-Type": "application/json",
