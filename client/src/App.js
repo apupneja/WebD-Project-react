@@ -23,7 +23,9 @@ function App() {
             <Route path="/download"></Route>
             <Route path="/logout"></Route>
           </SideNav>
-        <Route component={Error} />
+        <Route path="*">
+          <Error/>
+        </Route>
       </Switch>
     </Router>
   );

@@ -73,7 +73,6 @@ router.post("/login", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   try {
-    console.log(req.body)
     await authCheck(req.body.headers.Authorization);
     const user = await new User({
       name: req.body.data.name,
@@ -84,7 +83,6 @@ router.post("/signup", async (req, res) => {
       message: `New user with username ${js.name} has been created`,
     });
   } catch (err) {
-    console.log(err);
     if (err.message === "Invalid credentials") {
       res.status(401).json({ message: err.message });
     } else {

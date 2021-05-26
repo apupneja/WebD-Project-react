@@ -65,7 +65,7 @@ const Main = () => {
   }
   return (
     <div>
-      <p style={{textAlign:"center",size:"14px",color:"green"}}>{message}</p>
+      <p style={{textAlign:"center",size:"14px",color:"green"}}><h3>{message}</h3></p>
       <div className="container">
         <span className="headingText">Database</span>
         &nbsp;&nbsp;&nbsp;&nbsp;
