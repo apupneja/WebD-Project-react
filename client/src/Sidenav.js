@@ -1,72 +1,120 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
-    Checkbox,
-    Grid,
-    Header,
-    Icon,
-    Image,
-    Menu,
-    MenuHeader,
-    Segment,
-    Sidebar,
-    Button
-  } from 'semantic-ui-react'
-import Main from './main'
+  Checkbox,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Menu,
+  MenuHeader,
+  Segment,
+  Sidebar,
+  Button,
+  SegmentGroup,
+  Container,
+} from "semantic-ui-react";
+import Download from "./download";
+import Logout from "./logout";
+import Main from "./main";
+import MainAddCat from "./main-addcat";
+import MainAddProd from "./main-addprod";
+import MainDelcat from "./main-delcat";
+import MainDelprod from "./main-delprod";
+import MainEdit from "./main-edit";
+import MainSignup from "./main-signup";
 
 function Sidenav() {
-    const [visible, setVisible] = React.useState(false)
-
+  const [visible, setVisible] = React.useState(false);
+  let {pathname} = useLocation();
+  
   return (
-    <Grid columns={1} black>
-      <Grid.Column>
-          <Button  onClick={()=>setVisible(!visible)}><Icon name="bars"/></Button>
-      </Grid.Column>
-
-      <Grid.Column>
-        <Sidebar.Pushable as={Segment}>
+        <div>
+          <Button onClick={() => setVisible(!visible)}>
+          <Icon name="bars" />
+        </Button>
+        <Sidebar.Pushable className="sidenav">
           <Sidebar
             as={Menu}
-            animation='overlay'
-            icon='labeled'
+            animation="overlay"
+            icon="labeled"
             inverted
+            color="blue"
             onHide={() => setVisible(false)}
             vertical
             visible={visible}
-            width='thin'
+            width="thin"
           >
-            <Menu.Item as='a'>
-              <Icon name='warehouse' />
-              <Link to="./admin" className="link" >Inventory</Link>
+            <Menu.Item as="a">
+              <Icon name="warehouse" />
+              <Link to="./admin" className="link">
+                Inventory
+              </Link>
             </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='pencil' />
-              <Link to="./edit" className="link" >Edit Inventory</Link>
+            <Menu.Item as="a">
+              <Icon name="pencil" />
+              <Link to="./edit" className="link">
+                Edit Inventory
+              </Link>
             </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='user plus' />
-              <Link to="./signup" className="link" >Create New Admin</Link>
+            <Menu.Item as="a">
+              <Icon name="plus circle" />
+              <Link to="./addcat" className="link">
+                Create a Category
+              </Link>
             </Menu.Item>
-            <Menu.Item as='a'>
-                <Icon name="download"/>
-                <Link to="./download" className="link">Download Inventory</Link>
+            <Menu.Item as="a">
+              <Icon name="plus" />
+              <Link to="./addprod" className="link">
+                Add a product
+              </Link>
             </Menu.Item>
-            <Menu.Item as='a'>
-                <Icon name="sign-out"/>
-                <Link to="./logout" className="link">Log out</Link>
+            <Menu.Item as="a">
+              <Icon name="delete" />
+              <Link to="./delprod" className="link">
+                Delete a product
+              </Link>
+            </Menu.Item>
+            <Menu.Item as="a">
+              <Icon name="trash" />
+              <Link to="./delcat" className="link">
+                Delete a category
+              </Link>
+            </Menu.Item>
+            <Menu.Item as="a">
+              <Icon name="user plus" />
+              <Link to="./signup" className="link">
+                Create New Admin
+              </Link>
+            </Menu.Item>
+            <Menu.Item as="a">
+              <Icon name="download" />
+              <Link to="./download" className="link">
+                Download Inventory
+              </Link>
+            </Menu.Item>
+            <Menu.Item as="a">
+              <Icon name="sign-out" />
+              <Link to="./logout" className="link">
+                Log out
+              </Link>
             </Menu.Item>
           </Sidebar>
 
-          <Sidebar.Pusher>
-            <Segment basic>
-              <Main/>
-            </Segment>
+          <Sidebar.Pusher dimmed={visible}>
+              {pathname === "/admin" &&  <Main /> }
+              {pathname === "/edit" && <MainEdit/>}
+              {pathname === "/addcat" && <MainAddCat />}
+              {pathname === "/addprod" && <MainAddProd />}
+              {pathname === "/delprod" && <MainDelprod />}
+              {pathname === "/delcat" && <MainDelcat />}
+              {pathname === "/signup" && <MainSignup />}
+              {pathname === "/download" && <Download />}
+              {pathname === "/logout" && <Logout />}
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-      </Grid.Column>
-    </Grid>
-  )
+        </div>
+  );
 }
 
-export default Sidenav
-
+export default Sidenav;

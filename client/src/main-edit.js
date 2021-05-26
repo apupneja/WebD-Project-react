@@ -11,6 +11,7 @@ let inventory,
   ID;
 
 const MainEdit = () => {
+  
   const history = useHistory();
   const [items, setItems] = useState([]);
   const [productId, setProductId] = useState(null);

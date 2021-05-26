@@ -10,6 +10,9 @@ let inventory,
 const MainAddProd = () => {
   const history = useHistory();
   const [productId, setProductId] = useState(null);
+  const [aisleError, setAisleError]= useState("");
+  const [costError, setCostError]= useState("");
+  const [quantityError, setQuantityError]= useState("");
   const [newProd, setNewProd] = useState({
     name: "",
     cost: 0,
@@ -70,7 +73,7 @@ const MainAddProd = () => {
     e.preventDefault();
     ID = productId;
     axios
-      .patch(`http://localhost:8000/api/add/${ID}`, {
+      .patch(`/api/add/${ID}`, {
         data: {
           new: newProd,
         },
@@ -84,7 +87,14 @@ const MainAddProd = () => {
         history.push("/admin");
       })
       .catch((err) => {
-        console.log(err);
+        if(err.response.data.message==="Invalid credentials"){
+          history.push("/");
+        }
+        else{
+          setCostError(err.response.data.errors.cost);
+          setQuantityError(err.response.data.errors.quantity);
+          setAisleError(err.response.data.errors.aisle);
+        }
       });
   };
 
@@ -114,30 +124,30 @@ const MainAddProd = () => {
             <Form.Input
               label="Cost:"
               required
-              type="number"
               onChange={(e) => {
                 handleCost(e);
               }}
             />
+             <h4 style={{ fontSize: "14px", color: "red" }}>{costError}</h4>
             <Form.Input
               label="Quantity:"
               required
-              type="number"
               onChange={(e) => {
                 handleQuantity(e);
               }}
             />
+            <h5 style={{ fontSize: "14px", color: "red" }}>{quantityError}</h5>
             <Form.Input
               label="Aisle number:"
               required
-              type="number"
               onChange={(e) => {
                 handleAisle(e);
               }}
             />
+             <h5 style={{ fontSize: "14px", color: "red" }}>{aisleError}</h5>
+             <Button>Submit</Button>
           </div>
         )}
-        <Button>Submit</Button>
       </Form>
     </div>
   );

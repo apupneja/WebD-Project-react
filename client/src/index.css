@@ -64,9 +64,6 @@ ul{
 
 
 /* Stuff I used for popup */
-
-
-
 .popup{
   position: fixed;
   top: 0;
@@ -78,6 +75,10 @@ ul{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sidenav{
+  height: 100%!important;
 }
 
 .popupInner{

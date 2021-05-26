@@ -18,7 +18,9 @@ const MainAddCat = () => {
     quantity: 0,
     aisle: 0
   })
-  
+  const [aisleError, setAisleError]= useState("");
+  const [costError, setCostError]= useState("");
+  const [quantityError, setQuantityError]= useState("");
   
   const handleCat = (e) => {
     setNameCat({ 
@@ -84,7 +86,14 @@ setNameCat({
         history.push("/admin");
       })
       .catch((err) => {
-        console.log(err);
+        if(err.response.data.message==="Invalid credentials"){
+          history.push("/");
+        }
+        else{
+          setCostError(err.response.data.errors.cost);
+          setQuantityError(err.response.data.errors.quantity);
+          setAisleError(err.response.data.errors.aisle);
+        }
       });
   };
 
@@ -104,21 +113,21 @@ setNameCat({
       <Form.Input
          label="Cost:"
          required
-         type='number'
          onChange={(e) => {handleCost(e)}}
       />
+      <h3 style={{ fontSize: "14px", color: "red" }}>{costError}</h3>
       <Form.Input
          label="Quantity:"
          required
-         type='number'
          onChange={(e) => {handleQuantity(e)}}
       />
+      <h3 style={{ fontSize: "14px", color: "red" }}>{quantityError}</h3>
       <Form.Input
          label="Aisle number:"
          required
-         type='number'
          onChange={(e) => {handleAisle(e)}}
       />
+      <h3 style={{ fontSize: "14px", color: "red" }}>{aisleError}</h3>
     <Button>Submit</Button>
     </Form>
       
