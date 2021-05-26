@@ -43,7 +43,7 @@ function Sidenav() {
             onHide={() => setVisible(false)}
             vertical
             visible={visible}
-            width="thin"
+            width="wide"
           >
             <Menu.Item as="a">
               <Icon name="warehouse" />
