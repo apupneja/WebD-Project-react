@@ -47,55 +47,55 @@ function Sidenav() {
           >
             <Menu.Item as="a">
               <Icon name="warehouse" />
-              <Link to="./admin" className="link">
+              <Link to="./admin" className="link" onClick={()=> setVisible(false)}>
                 Inventory
               </Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="pencil" />
-              <Link to="./edit" className="link">
+              <Link to="./edit" className="link" onClick={()=> setVisible(false)}>
                 Edit Inventory
               </Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="plus circle" />
-              <Link to="./addcat" className="link">
+              <Link to="./addcat" className="link"  onClick={()=> setVisible(false)}>
                 Create a Category
               </Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="plus" />
-              <Link to="./addprod" className="link">
+              <Link to="./addprod" className="link" onClick={()=> setVisible(false)}>
                 Add a product
               </Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="delete" />
-              <Link to="./delprod" className="link">
+              <Link to="./delprod" className="link" onClick={()=> setVisible(false)}>
                 Delete a product
               </Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="trash" />
-              <Link to="./delcat" className="link">
+              <Link to="./delcat" className="link" onClick={()=> setVisible(false)}>
                 Delete a category
               </Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="user plus" />
-              <Link to="./signup" className="link">
+              <Link to="./signup" className="link" onClick={()=> setVisible(false)}>
                 Create New Admin
               </Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="download" />
-              <Link to="./download" className="link">
+              <Link to="./download" className="link" onClick={()=> setVisible(false)}>
                 Download Inventory
               </Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="sign-out" />
-              <Link to="./logout" className="link">
+              <Link to="./logout" className="link" onClick={()=> setVisible(false)}>
                 Log out
               </Link>
             </Menu.Item>
