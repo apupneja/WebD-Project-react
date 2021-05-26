@@ -1,23 +1,12 @@
-import React, { useState } from "react";
-import Main from "./main";
+import React from "react";
 import Error from "./error";
 import Login from "./login";
-import MainEdit from "./main-edit";
-import MainSignup from "./main-signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
-import Logout from "./logout";
-import Download from "./download";
 import SideNav from "./Sidenav";
-import MainAddCat from "./main-addcat";
-import MainAddProd from "./main-addprod";
-import MainDelprod from "./main-delprod";
-import MainDelcat from "./main-delcat";
 import './index.css';
 
 function App() {
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <Router>

@@ -79,6 +79,15 @@ ul{
 
 .sidenav{
   height: 100%!important;
+  color:#08395e;
+  background-color:white;
+}
+.topnav{
+  background-color:#0E6EB8;
+  padding: 1.0%;
+}
+.btn{
+  color:#0E6EB8;
 }
 
 .popupInner{
