@@ -65,7 +65,7 @@ const Main = () => {
   }
   return (
     <div>
-      <h1>{message}</h1>
+      <p style={{textAlign:"center",size:"14px",color:"green"}}>{message}</p>
       <div className="container">
         <span className="headingText">Database</span>
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -84,7 +84,8 @@ const Main = () => {
               }} 
             ></input>
             <Icon className="searchInputIcon" name='search'/>
-            {data.length === 0 && <span>No records found to display!</span>}
+            <br></br><br></br>
+            {data.length === 0 && <span style={{color:"red"}}>No records found to display!</span>}
           </div>
         <div>
           <div className="filter">

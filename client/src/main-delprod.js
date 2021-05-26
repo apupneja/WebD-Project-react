@@ -1,4 +1,4 @@
-import { Button, Form, Message, Dropdown } from "semantic-ui-react";
+import { Button, Form, Dropdown } from "semantic-ui-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
@@ -16,7 +16,7 @@ const MainDelprod = () => {
   const [productId, setProductId] = useState(null);
   const [detailsId, setDetailsId] = useState(null);
   useEffect(() => {
-    categoryOptions=[],
+    categoryOptions=[]
     axios
       .get("/api/inventory", {
         headers: {
