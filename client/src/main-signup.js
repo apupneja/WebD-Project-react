@@ -48,6 +48,7 @@ const MainSignup = () => {
   }
   return (
     <div className="edit">
+      <h3>Create New Admin</h3>
       <Form onSubmit={handleClick}>
         <Form.Field>
           <label style={{ fontSize: "16px" }}>New Username</label>

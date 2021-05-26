@@ -100,6 +100,7 @@ const MainAddProd = () => {
 
   return (
     <div className="edit">
+      <h3>Add a product</h3>
       <Form error onSubmit={handleClick}>
         <Form.Input label="Category">
           <Dropdown

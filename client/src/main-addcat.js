@@ -99,6 +99,7 @@ setNameCat({
 
   return (
     <div className="edit">
+      <h3>Create a category</h3>
       <Form error onSubmit={handleClick}>
       <Form.Input
          label="Enter new Category"

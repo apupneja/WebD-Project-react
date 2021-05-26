@@ -79,6 +79,7 @@ const MainDelprod = () => {
 
   return (
     <div className="edit">
+      <h3>Delete a product</h3>
       <Form error onSubmit={handleClick}>
         <Form.Input label="Category">
           <Dropdown

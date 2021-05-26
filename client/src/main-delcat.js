@@ -58,6 +58,7 @@ const MainDelcat = () => {
 
   return (
     <div className="edit">
+      <h3>Delete a category</h3>
       <Form error onSubmit={handleClick}>
         <Form.Input label="Choose Category to delete">
           <Dropdown

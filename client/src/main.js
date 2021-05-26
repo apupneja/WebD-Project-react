@@ -85,7 +85,7 @@ const Main = () => {
             ></input>
             <Icon className="searchInputIcon" name='search'/>
             <br></br><br></br>
-            {data.length === 0 && <span style={{color:"red"}}>No records found to display!</span>}
+            {data.length === 0 && <span style={{color:"red",size:"10px"}}>No records found to display!</span>}
           </div>
         <div>
           <div className="filter">

@@ -102,6 +102,7 @@ const MainEdit = () => {
 
   return (
     <div className="edit">
+      <h3>Edit Inventory</h3>
       <Form error onSubmit={handleClick}>
         <Form.Input label="Category">
           <Dropdown
