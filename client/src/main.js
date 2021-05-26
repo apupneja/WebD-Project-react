@@ -93,7 +93,6 @@ const Main = () => {
                 <br></br>
                 <h1 key={product._id}>{capitalize(product.product)}</h1>
                 <ul>
-                  {/* <Component id="ID" name="Available Product" location="Aisle Number" quantity="Available amount" /> */}
                   {product.details.map((detail) => (
                     <Component
                       key={detail._id}

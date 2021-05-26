@@ -73,7 +73,7 @@ const MainAddProd = () => {
     e.preventDefault();
     ID = productId;
     axios
-      .patch(`/api/add/${ID}`, {
+      .patch(`http://localhost:8000/api/add/${ID}`, {
         data: {
           new: newProd,
         },
