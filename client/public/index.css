@@ -1,0 +1,98 @@
+.main{
+    width: 100%;
+    height: 100%;
+    display:inline-block;
+    text-align:center;
+}
+
+.img{
+    margin-top: 50px ;
+    width: 45%;
+    height: 15%;
+}
+
+.info{
+    text-align: right;
+    margin-right: 40px;
+}
+
+img{
+    height: 5%;
+    width:  5%;
+    padding-top: 20px;
+}
+
+span{
+    font-weight: 1000;
+    font-size: xx-large;
+}
+
+.contain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.circle {
+    display: inline-block;
+    background-color: rgb(57, 143, 255);
+    height: 15px;
+    width: 15px;
+    border-radius: 25px;
+  }
+  
+  #container {
+    height: 200px;
+    margin-top: 50px;
+  }
+  
+  #ball-1{
+    animation-name: bounce;
+    animation-delay: 1s;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+  }
+  #ball-2{
+    animation-name: bounce;
+    animation-delay: 1.1s;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+  }
+  #ball-3{
+    animation-name: bounce;
+    animation-delay: 1.2s;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(23px);
+    }
+    60% {
+      transform: translateY(-25px);
+    }
+    80%{
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+
+    img {
+        height: 60px;
+        width:  60px;
+        padding-top: 20px;
+    }
+
+    .img{
+        padding-top: 50px;
+        margin-top: 50px ;
+        width: 75%;
+        height: 25%;
+    }
+  }
