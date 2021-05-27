@@ -56,4 +56,4 @@ module.exports= {
 * Learnt and used semantic ui.
 * Learnt how to make websites responsive in react.js using third party packages.
 
-### Credentials for the app: Username: Raghav, passwrd: test12
+### Credentials for the app: Username: Raghav, password: test12
