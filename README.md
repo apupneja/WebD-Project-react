@@ -55,3 +55,5 @@ module.exports= {
 * Learnt and worked with react js, node js, mongodb, mongoose.
 * Learnt and used semantic ui.
 * Learnt how to make websites responsive in react.js using third party packages.
+
+### Credentials for the app: Username: Raghav, passwrd: test12
