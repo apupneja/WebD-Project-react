@@ -49,6 +49,7 @@ module.exports= {
 * Learnt Graphql for the project(did not use it due to time constraint).
 * Learnt how json web tokens work and how to secure the server properly.
 * Learnt how to create pdf's through various third party packages.
+* Explored React more in depth
 ### Anirudh Pupneja
 * Worked with react.js
 ### Omkar Kulkarni
